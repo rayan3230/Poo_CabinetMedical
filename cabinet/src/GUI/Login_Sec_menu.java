@@ -72,8 +72,8 @@ public class Login_Sec_menu extends JFrame {
         btnAddAppointment.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (office.Clients.isEmpty() || accountManger.Doctors.isEmpty()) {
-                    JOptionPane.showMessageDialog(Login_Sec_menu.this, 
-                        "Need both patients and doctors to create an appointment.");
+                    JOptionPane.showMessageDialog(Login_Sec_menu.this,
+                            "Need both patients and doctors to create an appointment.");
                     return;
                 }
 
@@ -90,24 +90,23 @@ public class Login_Sec_menu extends JFrame {
 
                 // Get patient selection
                 String selectedPatient = (String) JOptionPane.showInputDialog(
-                    frame, "Select a patient:", "Patient Selection",
-                    JOptionPane.QUESTION_MESSAGE, null, patientNames, patientNames[0]
-                );
+                        frame, "Select a patient:", "Patient Selection",
+                        JOptionPane.QUESTION_MESSAGE, null, patientNames, patientNames[0]);
 
-                if (selectedPatient == null) return;
+                if (selectedPatient == null)
+                    return;
 
                 // Get doctor selection
                 String selectedDoctor = (String) JOptionPane.showInputDialog(
-                    frame, "Select a doctor:", "Doctor Selection",
-                    JOptionPane.QUESTION_MESSAGE, null, doctorNames, doctorNames[0]
-                );
+                        frame, "Select a doctor:", "Doctor Selection",
+                        JOptionPane.QUESTION_MESSAGE, null, doctorNames, doctorNames[0]);
 
-                if (selectedDoctor == null) return;
+                if (selectedDoctor == null)
+                    return;
 
                 // Get appointment date
                 String appointmentDate = JOptionPane.showInputDialog(
-                    frame, "Enter appointment date (YYYY-MM-DD):"
-                );
+                        frame, "Enter appointment date (YYYY-MM-DD):");
 
                 if (appointmentDate != null && !appointmentDate.trim().isEmpty()) {
                     // Find selected patient and doctor objects
@@ -131,10 +130,10 @@ public class Login_Sec_menu extends JFrame {
                     if (patient != null && doctor != null) {
                         VisitDates appointment = new VisitDates(appointmentDate, patient, doctor);
                         office.addAppointment(appointment);
-                        JOptionPane.showMessageDialog(frame, 
-                            "Appointment scheduled successfully!\nPatient: " + patient.FullName + 
-                            "\nDoctor: " + doctor.FullName + 
-                            "\nDate: " + appointmentDate);
+                        JOptionPane.showMessageDialog(frame,
+                                "Appointment scheduled successfully!\nPatient: " + patient.FullName +
+                                        "\nDoctor: " + doctor.FullName +
+                                        "\nDate: " + appointmentDate);
                     }
                 }
             }
@@ -153,11 +152,11 @@ public class Login_Sec_menu extends JFrame {
                 for (int i = 0; i < office.Clients.size(); i++) {
                     Client client = office.Clients.get(i);
                     patientsList.append(i + 1).append(". ")
-                              .append(client.FullName)
-                              .append(" (Phone: ").append(client.PhoneNum).append(")")
-                              .append("\n");
+                            .append(client.FullName)
+                            .append(" (Phone: ").append(client.PhoneNum).append(")")
+                            .append("\n");
                 }
-                
+
                 if (patientsList.length() == 0) {
                     JOptionPane.showMessageDialog(frame, "No patients registered.");
                 } else {
@@ -165,9 +164,9 @@ public class Login_Sec_menu extends JFrame {
                     textArea.setEditable(false);
                     JScrollPane scrollPane = new JScrollPane(textArea);
                     scrollPane.setPreferredSize(new Dimension(300, 200));
-                    
-                    JOptionPane.showMessageDialog(frame, scrollPane, 
-                        "Registered Patients", JOptionPane.INFORMATION_MESSAGE);
+
+                    JOptionPane.showMessageDialog(frame, scrollPane,
+                            "Registered Patients", JOptionPane.INFORMATION_MESSAGE);
                 }
             }
         });
@@ -182,14 +181,14 @@ public class Login_Sec_menu extends JFrame {
         btnDisplayAppointments.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 StringBuilder appointmentsList = new StringBuilder();
-                
+
                 for (VisitDates appointment : office.Appointments) {
-                    appointmentsList.append("Date: ").append(appointment.date)
-                                  .append("\nPatient: ").append(appointment.patient.FullName)
-                                  .append("\nDoctor: ").append(appointment.doctor.FullName)
-                                  .append("\n-----------------\n");
+                    appointmentsList.append("Date: ").append(appointment.Date)
+                            .append("\nPatient: ").append(appointment.patient.FullName)
+                            .append("\nDoctor: ").append(appointment.doctor.FullName)
+                            .append("\n-----------------\n");
                 }
-                
+
                 if (appointmentsList.length() == 0) {
                     JOptionPane.showMessageDialog(frame, "No appointments scheduled.");
                 } else {
@@ -197,9 +196,9 @@ public class Login_Sec_menu extends JFrame {
                     textArea.setEditable(false);
                     JScrollPane scrollPane = new JScrollPane(textArea);
                     scrollPane.setPreferredSize(new Dimension(300, 200));
-                    
-                    JOptionPane.showMessageDialog(frame, scrollPane, 
-                        "Scheduled Appointments", JOptionPane.INFORMATION_MESSAGE);
+
+                    JOptionPane.showMessageDialog(frame, scrollPane,
+                            "Scheduled Appointments", JOptionPane.INFORMATION_MESSAGE);
                 }
             }
         });
@@ -218,7 +217,7 @@ public class Login_Sec_menu extends JFrame {
             }
         });
         getContentPane().add(btnBack);
-        
+
         JLabel lblNewLabel = new JLabel("Welcome to the medical Cabinet System ");
         lblNewLabel.setFont(new Font("Segoe UI", Font.PLAIN, 16));
         lblNewLabel.setBounds(234, 47, 300, 30);

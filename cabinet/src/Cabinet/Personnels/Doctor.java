@@ -17,6 +17,11 @@ public class Doctor {
         this.PassWord = PassWord;
     }
 
+    public Doctor(String FullName, String PassWord) {
+        this.FullName = FullName;
+        this.PassWord = PassWord;
+    }
+
     public boolean[] Schedule() {
         boolean[] schedule = new boolean[7];
         Scanner scanner = new Scanner(System.in);
