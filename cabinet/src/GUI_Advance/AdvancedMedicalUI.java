@@ -393,18 +393,12 @@ public class AdvancedMedicalUI extends JFrame {
 
         // Logo at the top with colored background
         JPanel logoPanel = new JPanel();
-        logoPanel.setBackground(new Color(21, 101, 192));
+        logoPanel.setBackground(new Color(33, 37, 41));
         logoPanel.setBounds(0, 0, 700, 100);
         logoPanel.setLayout(null);
         containerPanel.add(logoPanel);
 
-        JLabel lblLogo = new JLabel("Create New Account");
-        lblLogo.setForeground(Color.WHITE);
-        lblLogo.setFont(new Font("Segoe UI", Font.BOLD, 28));
-        lblLogo.setHorizontalAlignment(SwingConstants.CENTER);
-        lblLogo.setBounds(0, 30, 700, 40);
-        logoPanel.add(lblLogo);
-
+    
         // Account Type Selection
         JLabel lblAccountType = new JLabel("Select Account Type");
         lblAccountType.setFont(new Font("Segoe UI", Font.BOLD, 16));
