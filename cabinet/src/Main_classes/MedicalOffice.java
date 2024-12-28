@@ -1,11 +1,12 @@
 package Main_classes;
 
+import Cabinet.Management.Bill;
+import Cabinet.Management.Medicines;
+import Cabinet.Management.PatientSheet;
+import Cabinet.Management.Prescription;
 import Cabinet.Management.VisitDates;
 import Cabinet.Personnels.Client;
 import Cabinet.Personnels.Doctor;
-import Cabinet.Management.Medicines;
-import Cabinet.Management.Prescription;
-import Cabinet.Management.Bill;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +21,7 @@ public class MedicalOffice {
     public List<Medicines> medicines;
     public List<Bill> bills;
     public List<Prescription> Prescription;
+    public ArrayList<PatientSheet> PatientSheets = new ArrayList<>();
 
     public MedicalOffice() {
         Clients = new ArrayList<>();
@@ -140,5 +142,8 @@ public class MedicalOffice {
 
         }
 
+    }
+    public void addPatientSheet(PatientSheet sheet) {
+        PatientSheets.add(sheet);
     }
 }
