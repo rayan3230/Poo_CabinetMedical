@@ -5,6 +5,7 @@ import java.util.Scanner;
 import Cabinet.Management.Bill;
 import Cabinet.Management.Medicines;
 import Cabinet.Management.PatientSheet;
+import Cabinet.Management.Prescription;
 import Cabinet.Management.VisitDates;
 import Cabinet.Personnels.Accounts;
 import Cabinet.Personnels.Client;
@@ -200,7 +201,7 @@ public class MainFonction {
                     System.out.println("10. display in stock medicines and drugs");
                     System.out.println("11. add medicines");
                     System.out.println("12. price of the appointement");
-                    System.out.println("13. print a recipe (ordonance)");
+                    System.out.println("13. write save and print a prescription");
                     System.out.println("14. calculate bill ");
                     System.out.println("15. display bills");
                     System.out.println("16. exit");
@@ -429,6 +430,47 @@ public class MainFonction {
                                     office.Appointments.get(AppNum).CalculatePrice(office.doctors.get(DocNum), time));
                             break;
 
+                        case 13:
+                            boolean exit = false;
+                            do {
+                                System.out.println(
+                                        "do you want to     1-print     or     2-write the print     a prescription");
+                                int x = Scan.nextInt();
+
+                                if (x == 1) {
+                                    System.out.println("patient name  :  ");
+                                    String PatientName = Scan.next();
+                                    office.DisplayPrescription(PatientName);
+                                } else if (x == 2) {
+
+                                    System.out.println("//-------// Poo-Project Office //-----------------//");
+                                    System.out.println(
+                                            "------------- THE PRESCRIPTION THAT ALLOWS THE PATIENT TO BUY MEDECINES ----------------- ");
+
+                                    System.out.print("I, doctor  :  ");
+                                    String DocName = Scan.next();
+                                    System.out.print("allows my patient  :  ");
+                                    String PatientName = Scan.next();
+                                    System.out.print("to buy the medicines (use _ for space)  :  ");
+                                    String MedList = Scan.next();
+                                    System.out.println("");
+                                    System.out.println("");
+                                    System.out.println("                              signed : " + DocName);
+                                    System.out.println(
+                                            "//--------------------------------------------------------------------------------//");
+
+                                    Prescription PresCript = new Prescription(DocName, PatientName, MedList);
+
+                                    office.Prescription.add(PresCript);
+
+                                } else {
+                                    System.out.println("only enter the values 1 or 2 please ");
+                                }
+
+                            } while (!exit);
+
+                            break;
+
                         case 14:
                             Bill bill = new Bill();
 
@@ -500,7 +542,7 @@ public class MainFonction {
                     System.out.println("7. display in stock medicines and drugs");
                     System.out.println("8. add medicines");
                     System.out.println("9. price of the appointement");
-                    System.out.println("10. print a recipe (ordonance)");
+                    System.out.println("10. print a prescription");
                     System.out.println("11. calculate bill ");
                     System.out.println("12. display bills");
                     System.out.println("13. exit");
@@ -632,6 +674,12 @@ public class MainFonction {
 
                             break;
 
+                        case 10:
+                            System.out.println("patient name  :  ");
+                            String PatientName = Scan.next();
+                            office.DisplayPrescription(PatientName);
+
+                            break;
                         case 11:
                             Bill bill = new Bill();
 

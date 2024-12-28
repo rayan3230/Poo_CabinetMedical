@@ -4,6 +4,7 @@ import Cabinet.Management.VisitDates;
 import Cabinet.Personnels.Client;
 import Cabinet.Personnels.Doctor;
 import Cabinet.Management.Medicines;
+import Cabinet.Management.Prescription;
 import Cabinet.Management.Bill;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +19,7 @@ public class MedicalOffice {
 
     public List<Medicines> medicines;
     public List<Bill> bills;
+    public List<Prescription> Prescription;
 
     public MedicalOffice() {
         Clients = new ArrayList<>();
@@ -94,6 +96,10 @@ public class MedicalOffice {
         }
     }
 
+    public void addBill(Bill bill) {
+        bills.add(bill);
+    }
+
     public void displayBill() {
         if (bills.isEmpty()) {
             System.out.println("no medicines in stock");
@@ -103,5 +109,36 @@ public class MedicalOffice {
                         + bills.get(i).AppId + "     price  :  " + bills.get(i).Price);
             }
         }
+    }
+
+    public void addPreScript(Prescription PreScript) {
+        Prescription.add(PreScript);
+    }
+
+    public void DisplayPrescription(String PatientName) {
+        if (Prescription.isEmpty()) {
+            System.out.println("there qre no prescription in the system");
+        } else {
+            for (int i = 0; i < Prescription.size(); i++) {
+                if (Prescription.get(i).PatientName.equals(PatientName)) {
+
+                    System.out.println("//-------// Poo-Project Office //-----------------//");
+                    System.out.println(
+                            "------------- THE PRESCRIPTION THAT ALLOWS THE PATIENT TO BUY MEDECINES ----------------- ");
+
+                    System.out.print("I, doctor  :  " + Prescription.get(i).DocName);
+                    System.out.print("allows my patient  :  " + Prescription.get(i).PatientName);
+                    System.out.print("to buy the medicines (use _ for space)  :  " + Prescription.get(i).MedList);
+                    System.out.println("");
+                    System.out.println("");
+                    System.out.println("                              signed : " + Prescription.get(i).DocName);
+                    System.out.println(
+                            "//--------------------------------------------------------------------------------//");
+
+                }
+            }
+
+        }
+
     }
 }
