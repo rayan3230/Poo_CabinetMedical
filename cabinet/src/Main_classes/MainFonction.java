@@ -194,8 +194,10 @@ public class MainFonction {
                     System.out.println("6. Display Appointments");
                     System.out.println("7. add sheet for the patient");
                     System.out.println("8. add medical file to patient");
-                    System.out.println("");
-                    System.out.println("9. exit");
+                    System.out.println("9. display available sevices ");
+                    System.out.println("10. display in stock medicines and drugs");
+                    System.out.println("11. price of the appointement");
+                    System.out.println("12. exit");
                     System.out.print("Choose an option: ");
 
                     int number = Scan.nextInt();
@@ -222,6 +224,7 @@ public class MainFonction {
                             String dFullName = Scan.next();
 
                             System.out.print("Enter doctor specialization: ");
+                            office.displayServices();
                             String specialization = Scan.next();
 
                             System.out.print("Enter doctor e-mail : ");
@@ -251,10 +254,19 @@ public class MainFonction {
                             System.out.print("Enter patient number: ");
                             int patientIndex = Scan.nextInt() - 1;
 
+                            System.out.println("choose the type of service you want to book for  :  ");
+                            office.displayServices();
+
+                            String AppointementService = Scan.next();
+
                             System.out.println("Choose a doctor:");
 
                             for (int i = 0; i < office.doctors.size(); i++) {
-                                System.out.println(i + 1 + ". " + office.doctors.get(i));// tjib les mdoc
+
+                                if (office.doctors.get(i).Profession.equals(AppointementService)) {
+                                    System.out.println(i + 1 + ". " + office.doctors.get(i));// tjib les mdoc
+                                }
+
                             }
 
                             System.out.print("Enter doctor number: ");
@@ -363,8 +375,29 @@ public class MainFonction {
                                 office.Clients.get(patientIndex3).addAllergy(allergy.trim());
                             }
                             break;
-                        // ----------------EXIT---------------------
+
                         case 9:
+
+                            office.displayServices();
+
+                            break;
+                        case 11:
+                            System.out.println("what is your appointement  :  ");
+                            office.displayAppointments();
+                            int AppNum = Scan.nextInt();
+
+                            System.out.println("how long was your appointement  (in hours):  ");
+                            int time = Scan.nextInt();
+
+                            System.out.println("which doctor :  ");
+                            office.displayDoctors();
+                            int DocNum = Scan.nextInt();
+
+                            System.out.println(
+                                    office.Appointments.get(AppNum).CalculatePrice(office.doctors.get(DocNum), time));
+                            break;
+                        // ----------------EXIT---------------------
+                        case 12:
                             return;
 
                         default:
@@ -394,7 +427,10 @@ public class MainFonction {
                     System.out.println("3. Display Patients");
                     System.out.println("4. Display Doctors");
                     System.out.println("5. Display Appointments");
-                    System.out.println("6. exit");
+                    System.out.println("6. display available sevices ");
+                    System.out.println("7. display in stock medicines and drugs");
+                    System.out.println("8. price of the appointement");
+                    System.out.println("9. exit");
                     System.out.print("Choose an option: ");
 
                     int number = Scan.nextInt();
@@ -426,10 +462,19 @@ public class MainFonction {
                             System.out.print("Enter patient number: ");
                             int patientIndex = Scan.nextInt() - 1;
 
+                            System.out.println("choose the type of service you want to book for  :  ");
+                            office.displayServices();
+
+                            String AppointementService = Scan.next();
+
                             System.out.println("Choose a doctor:");
 
                             for (int i = 0; i < office.doctors.size(); i++) {
-                                System.out.println(i + 1 + ". " + office.doctors.get(i));// tjib les mdoc
+
+                                if (office.doctors.get(i).Profession.equals(AppointementService)) {
+                                    System.out.println(i + 1 + ". " + office.doctors.get(i));// tjib les mdoc
+                                }
+
                             }
 
                             System.out.print("Enter doctor number: ");
@@ -485,8 +530,29 @@ public class MainFonction {
                             office.addDoctor(doctor);
                             System.out.println("Doctor added.");
                             break;
-
                         case 7:
+
+                            office.displayServices();
+
+                            break;
+                        case 8:
+
+                            System.out.println("what is your appointement  :  ");
+                            office.displayAppointments();
+                            int AppNum = Scan.nextInt();
+
+                            System.out.println("how long was your appointement  (in hours):  ");
+                            int time = Scan.nextInt();
+
+                            System.out.println("which doctor :  ");
+                            office.displayDoctors();
+                            int DocNum = Scan.nextInt();
+
+                            System.out.println(
+                                    office.Appointments.get(AppNum).CalculatePrice(office.doctors.get(DocNum), time));
+
+                            break;
+                        case 9:
 
                             return;
 

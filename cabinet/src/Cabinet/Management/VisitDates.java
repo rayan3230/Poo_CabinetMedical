@@ -15,6 +15,10 @@ public class VisitDates {
         this.doctor = doctor;
     }
 
+    public int CalculatePrice(Doctor Doc, int Duration) {
+        return (Doc.PricePerHour * Duration);
+    }
+
     @Override
     public String toString() {
         return "Date: " + Date + ", Patient: " + patient.FullName + ", Doctor: " + doctor.FullName + ", Phone: "

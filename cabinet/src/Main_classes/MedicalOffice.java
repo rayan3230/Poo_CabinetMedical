@@ -10,6 +10,9 @@ public class MedicalOffice {
     public List<Client> Clients;
     public List<VisitDates> Appointments;
     public List<Doctor> doctors;
+    public String[] Services = { "cardiologist", "physical therapist", "dentist", "veterinarian", "radilogic",
+            "audiologist" };
+    public int NumServices = 6;
 
     public MedicalOffice() {
         Clients = new ArrayList<>();
@@ -45,8 +48,9 @@ public class MedicalOffice {
             System.out.println("No doctors in the database.");
         } else {
             for (int i = 0; i < doctors.size(); i++) {
-                System.out.println((i + 1) + "- " + doctors.get(i).FullName + ", Profession: " + doctors.get(i).Profession + 
-                                   ", Email: " + doctors.get(i).Mail + ", Phone: " + doctors.get(i).PhoneNum);
+                System.out.println(
+                        (i + 1) + "- " + doctors.get(i).FullName + ", Profession: " + doctors.get(i).Profession +
+                                ", Email: " + doctors.get(i).Mail + ", Phone: " + doctors.get(i).PhoneNum);
             }
         }
     }
@@ -58,6 +62,12 @@ public class MedicalOffice {
             for (int i = 0; i < Appointments.size(); i++) {
                 System.out.println((i + 1) + "- " + Appointments.get(i).toString());
             }
+        }
+    }
+
+    public void displayServices() {
+        for (int i = 0; i < NumServices; i++) {
+            System.out.println(Services[i]);
         }
     }
 }
