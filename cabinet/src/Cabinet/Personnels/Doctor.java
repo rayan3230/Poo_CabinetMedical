@@ -8,6 +8,7 @@ public class Doctor {
     public String Mail;
     public String PhoneNum;
     public String PassWord;
+    public int PricePerHour;
 
     public Doctor(String FullName, String Profession, String Mail, String PhoneNum, String PassWord) {
         this.FullName = FullName;
@@ -20,6 +21,11 @@ public class Doctor {
     public Doctor(String FullName, String PassWord) {
         this.FullName = FullName;
         this.PassWord = PassWord;
+    }
+
+    public Doctor(String FullName, int PricePerHour) {
+        this.FullName = FullName;
+        this.PricePerHour = PricePerHour;
     }
 
     public boolean[] Schedule() {
@@ -39,6 +45,7 @@ public class Doctor {
                 i--; // Repeat the input
             }
         }
+        scanner.close();
         return schedule;
     }
 }
