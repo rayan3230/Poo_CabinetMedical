@@ -9,7 +9,7 @@ import Cabinet.Personnels.Client;
 import Cabinet.Personnels.Doctor;
 import Cabinet.Personnels.Secretary;
 
-public class SeperatingTask {
+public class MainFonction {
 
     static Scanner Scan = new Scanner(System.in);
     static MedicalOffice office = new MedicalOffice(); // Managing office-related operations
