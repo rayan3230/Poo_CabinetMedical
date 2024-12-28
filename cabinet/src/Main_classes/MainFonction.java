@@ -2,6 +2,8 @@ package Main_classes;
 
 import java.util.Scanner;
 
+import Cabinet.Management.Bill;
+import Cabinet.Management.Medicines;
 import Cabinet.Management.PatientSheet;
 import Cabinet.Management.VisitDates;
 import Cabinet.Personnels.Accounts;
@@ -196,8 +198,12 @@ public class MainFonction {
                     System.out.println("8. add medical file to patient");
                     System.out.println("9. display available sevices ");
                     System.out.println("10. display in stock medicines and drugs");
-                    System.out.println("11. price of the appointement");
-                    System.out.println("12. exit");
+                    System.out.println("11. add medicines");
+                    System.out.println("12. price of the appointement");
+                    System.out.println("13. print a recipe (ordonance)");
+                    System.out.println("14. calculate bill ");
+                    System.out.println("15. display bills");
+                    System.out.println("16. exit");
                     System.out.print("Choose an option: ");
 
                     int number = Scan.nextInt();
@@ -381,7 +387,33 @@ public class MainFonction {
                             office.displayServices();
 
                             break;
+
+                        case 10:
+
+                            office.displayMedicines();
+
+                            break;
+
                         case 11:
+                            System.out.print("name  :  ");
+                            String MedName = Scan.next();
+
+                            System.out.print("Quantity  :  ");
+                            int Quantity = Scan.nextInt();
+
+                            System.out.print("price  :  ");
+                            int Price = Scan.nextInt();
+
+                            System.out.print("times a day  :  ");
+                            int TimesPerDay = Scan.nextInt();
+
+                            Medicines Med = new Medicines(MedName, Quantity, Price, TimesPerDay);
+
+                            office.addMadicines(Med);
+
+                            break;
+
+                        case 12:
                             System.out.println("what is your appointement  :  ");
                             office.displayAppointments();
                             int AppNum = Scan.nextInt();
@@ -396,8 +428,45 @@ public class MainFonction {
                             System.out.println(
                                     office.Appointments.get(AppNum).CalculatePrice(office.doctors.get(DocNum), time));
                             break;
-                        // ----------------EXIT---------------------
-                        case 12:
+
+                        case 14:
+                            Bill bill = new Bill();
+
+                            System.out.print("patient name  :  ");
+                            bill.PatientName = Scan.next();
+
+                            System.out.println("what is your appointement num and price:  ");
+                            System.out.print("price  :  ");
+                            int AppPrice = Scan.nextInt();
+                            System.out.print("id  :  ");
+                            bill.AppId = Scan.nextInt();
+
+                            System.out.print("how many meds do you have  :  ");
+                            int n = Scan.nextInt();
+
+                            System.out.println("What medicines do you have  :  ");
+                            office.displayMedicines();
+
+                            int MedPrice = 0;
+
+                            for (int i = 0; i < n; i++) {
+
+                                int Id = Scan.nextInt();
+                                MedPrice += office.medicines.get(Id).Price;
+                                bill.MedId[i] = Id;
+
+                            }
+
+                            System.out
+                                    .println("the price of the bill is  :  " + bill.calculateBill(AppPrice, MedPrice));
+
+                            office.bills.add(bill);
+
+                            break;
+                        case 15:
+                            office.displayBill();
+                            break;
+                        case 16:
                             return;
 
                         default:
@@ -429,8 +498,12 @@ public class MainFonction {
                     System.out.println("5. Display Appointments");
                     System.out.println("6. display available sevices ");
                     System.out.println("7. display in stock medicines and drugs");
-                    System.out.println("8. price of the appointement");
-                    System.out.println("9. exit");
+                    System.out.println("8. add medicines");
+                    System.out.println("9. price of the appointement");
+                    System.out.println("10. print a recipe (ordonance)");
+                    System.out.println("11. calculate bill ");
+                    System.out.println("12. display bills");
+                    System.out.println("13. exit");
                     System.out.print("Choose an option: ");
 
                     int number = Scan.nextInt();
@@ -509,33 +582,39 @@ public class MainFonction {
 
                             break;
                         // ---------------------ADD SHEET TO PATIENTS RECORD ----------------------
+
                         case 6:
-                            System.out.print("Enter doctor full name (comma-separated): ");
-                            String dFullName = Scan.next();
-
-                            System.out.print("Enter doctor specialization: ");
-                            String specialization = Scan.next();
-
-                            System.out.print("Enter doctor e-mail : ");
-                            String dMail = Scan.next();
-
-                            System.out.print("Enter doctor phone number: ");
-                            String dPhone = Scan.next();
-
-                            System.out.println("enter the doctors passe word  :  ");
-                            String dpasseword = Scan.next();
-
-                            Doctor doctor = new Doctor(dFullName, specialization, dMail, dPhone, dpasseword);
-
-                            office.addDoctor(doctor);
-                            System.out.println("Doctor added.");
-                            break;
-                        case 7:
 
                             office.displayServices();
 
                             break;
+                        case 7:
+
+                            office.displayMedicines();
+
+                            break;
+
                         case 8:
+
+                            System.out.print("name  :  ");
+                            String MedName = Scan.next();
+
+                            System.out.print("Quantity  :  ");
+                            int Quantity = Scan.nextInt();
+
+                            System.out.print("price  :  ");
+                            int Price = Scan.nextInt();
+
+                            System.out.print("times a day  :  ");
+                            int TimesPerDay = Scan.nextInt();
+
+                            Medicines Med = new Medicines(MedName, Quantity, Price, TimesPerDay);
+
+                            office.addMadicines(Med);
+
+                            break;
+
+                        case 9:
 
                             System.out.println("what is your appointement  :  ");
                             office.displayAppointments();
@@ -552,12 +631,50 @@ public class MainFonction {
                                     office.Appointments.get(AppNum).CalculatePrice(office.doctors.get(DocNum), time));
 
                             break;
-                        case 9:
 
+                        case 11:
+                            Bill bill = new Bill();
+
+                            System.out.print("patient name  :  ");
+                            bill.PatientName = Scan.next();
+
+                            System.out.println("what is your appointement num and price:  ");
+                            System.out.print("price  :  ");
+                            int AppPrice = Scan.nextInt();
+                            System.out.print("id  :  ");
+                            bill.AppId = Scan.nextInt();
+
+                            System.out.print("how many meds do you have  :  ");
+                            int n = Scan.nextInt();
+
+                            System.out.println("What medicines do you have  :  ");
+                            office.displayMedicines();
+
+                            int MedPrice = 0;
+
+                            for (int i = 0; i < n; i++) {
+
+                                int Id = Scan.nextInt();
+                                MedPrice += office.medicines.get(Id).Price;
+                                bill.MedId[i] = Id;
+
+                            }
+
+                            System.out
+                                    .println("the price of the bill is  :  " + bill.calculateBill(AppPrice, MedPrice));
+
+                            office.bills.add(bill);
+
+                            break;
+                        case 12:
+                            office.displayBill();
+                            break;
+                        case 13:
                             return;
 
                         default:
                             System.out.println("please only enter the number on the screen ");
+
                     }
                     Scan.close();
 

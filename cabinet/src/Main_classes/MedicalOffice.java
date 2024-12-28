@@ -3,6 +3,8 @@ package Main_classes;
 import Cabinet.Management.VisitDates;
 import Cabinet.Personnels.Client;
 import Cabinet.Personnels.Doctor;
+import Cabinet.Management.Medicines;
+import Cabinet.Management.Bill;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,10 +16,15 @@ public class MedicalOffice {
             "audiologist" };
     public int NumServices = 6;
 
+    public List<Medicines> medicines;
+    public List<Bill> bills;
+
     public MedicalOffice() {
         Clients = new ArrayList<>();
         Appointments = new ArrayList<>();
         doctors = new ArrayList<>();
+        medicines = new ArrayList<>();
+        bills = new ArrayList<>();
     }
 
     public void addClient(Client client) {
@@ -67,7 +74,34 @@ public class MedicalOffice {
 
     public void displayServices() {
         for (int i = 0; i < NumServices; i++) {
-            System.out.println(Services[i]);
+            System.out.println((i + 1) + "- " + Services[i]);
+        }
+    }
+
+    public void addMadicines(Medicines Med) {
+        medicines.add(Med);
+    }
+
+    public void displayMedicines() {
+        if (medicines.isEmpty()) {
+            System.out.println("no medicines in stock");
+        } else {
+            for (int i = 0; i < medicines.size(); i++) {
+                System.out.println("name  : " + medicines.get(i).Name + "    in stock  :  " + medicines.get(i).Quantity
+                        + "    price  :  " + medicines.get(i).Price + "     take " + medicines.get(i).TimesPerDay
+                        + "a day ");
+            }
+        }
+    }
+
+    public void displayBill() {
+        if (bills.isEmpty()) {
+            System.out.println("no medicines in stock");
+        } else {
+            for (int i = 0; i < bills.size(); i++) {
+                System.out.println("patient  :  " + bills.get(i).PatientName + "    for appointement number  :  "
+                        + bills.get(i).AppId + "     price  :  " + bills.get(i).Price);
+            }
         }
     }
 }
