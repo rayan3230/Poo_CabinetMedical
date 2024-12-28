@@ -29,8 +29,8 @@ public class MainFonction {
 
         } else if (accountType.equals("Secretary")) {
 
-            Secretary tempSec = new Secretary(accountName, accountPassword);
             loginSuccess = Account.SearchSecAccount(accountName, accountPassword);
+
         }
 
         return loginSuccess;
@@ -79,7 +79,7 @@ public class MainFonction {
                                     "please enter the value 1 or 2 only and not " + t + "or anything else");
                         }
                     }
-                } while (!loggedIn || HaveAccount == 1);
+                } while (!loggedIn && HaveAccount == 1);
 
             }
 
@@ -100,8 +100,17 @@ public class MainFonction {
                     System.out.println("your account has been added, please log in now ");
                     addingIn = true;
 
-                    Account.AddDocAccount(Doc);
-                } while (!addingIn);
+                    loggedIn = handleLogin("Doctor");
+
+                    if (loggedIn) {
+                        System.out.println("You have successfully logged in, welcome to the terminal.");
+
+                    } else {
+                        System.out.println("Something went wrong, please check your login details.");
+
+                    }
+
+                } while (!addingIn && !loggedIn);
 
             }
 
@@ -124,15 +133,13 @@ public class MainFonction {
 
                             HaveAccount = 2;
 
-                            System.out.println("account added, log in plz : ");
-
                         } else if (t != 2 && t != 1) {
 
                             System.out.println(
                                     "please enter the value 1 or 2 only and not " + t + "or anything else");
                         }
                     }
-                } while (!loggedIn || HaveAccount == 1);
+                } while (!loggedIn && HaveAccount == 1);
 
             }
 
@@ -145,15 +152,24 @@ public class MainFonction {
                     System.out.print("passe word  : ");
                     String accountpassword = Scan.next();
 
-                    addingIn = Account.SearchSecAccount(accountName, accountpassword);
+                    Secretary Sec = new Secretary(accountName, accountpassword);
 
-                    if (addingIn) {
-                        System.out.println("you have been successfuly loged in, welcome to the terminal ");
+                    Account.AddSecAccount(Sec);
+                    addingIn = true;
+
+                    System.out.println("your account has been added, please log in now ");
+
+                    loggedIn = handleLogin("Secretary");
+
+                    if (loggedIn) {
+                        System.out.println("You have successfully logged in, welcome to the terminal.");
+
                     } else {
-                        System.out.println(
-                                "something went wrong, please check your loging infos or creat an account if you dont have one");
+                        System.out.println("Something went wrong, please check your login details.");
+
                     }
-                } while (addingIn == false);
+
+                } while (!addingIn && !loggedIn);
 
             }
 
