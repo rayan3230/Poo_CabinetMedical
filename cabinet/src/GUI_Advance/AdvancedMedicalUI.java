@@ -393,12 +393,18 @@ public class AdvancedMedicalUI extends JFrame {
 
         // Logo at the top with colored background
         JPanel logoPanel = new JPanel();
-        logoPanel.setBackground(new Color(33, 37, 41));
+        logoPanel.setBackground(new Color(21, 101, 192));
         logoPanel.setBounds(0, 0, 700, 100);
         logoPanel.setLayout(null);
         containerPanel.add(logoPanel);
 
-    
+        JLabel lblLogo = new JLabel("Create New Account");
+        lblLogo.setForeground(Color.WHITE);
+        lblLogo.setFont(new Font("Segoe UI", Font.BOLD, 28));
+        lblLogo.setHorizontalAlignment(SwingConstants.CENTER);
+        lblLogo.setBounds(0, 30, 700, 40);
+        logoPanel.add(lblLogo);
+
         // Account Type Selection
         JLabel lblAccountType = new JLabel("Select Account Type");
         lblAccountType.setFont(new Font("Segoe UI", Font.BOLD, 16));
@@ -978,8 +984,10 @@ public class AdvancedMedicalUI extends JFrame {
         label.setBounds(40, yPosition, 600, 25);
         panel.add(label);
 
-        field.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-        field.setBounds(40, yPosition + 25, 600, 35);
+        if (field instanceof JTextField || field instanceof JPasswordField) {
+            field.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        }
+        field.setBounds(40, yPosition + 25, 400, 35);
         panel.add(field);
     }
 
@@ -1132,16 +1140,83 @@ public class AdvancedMedicalUI extends JFrame {
     }
 
     private void addPatient() {
-        String name = JOptionPane.showInputDialog(this, "Enter Patient Name:");
-        String password = JOptionPane.showInputDialog(this, "Enter Password:");
+        JDialog dialog = new JDialog(this, "Add New Patient", true);
+        dialog.setLayout(new BorderLayout());
+        dialog.setSize(500, 400);
+        dialog.setLocationRelativeTo(this);
+
+        // Create header panel
+        JPanel headerPanel = new JPanel();
+        headerPanel.setBackground(new Color(33, 37, 41));
+        headerPanel.setPreferredSize(new Dimension(500, 60));
+        headerPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 20, 15));
+
+        JLabel headerLabel = new JLabel("New Patient Registration");
+        headerLabel.setFont(new Font("Segoe UI", Font.BOLD, 20));
+        headerLabel.setForeground(Color.WHITE);
+        headerPanel.add(headerLabel);
+
+        // Create form panel
+        JPanel formPanel = new JPanel();// create a panel for the form fields (tzid des patiens)
+        formPanel.setLayout(null);
+        formPanel.setBackground(Color.WHITE);
+
+        // Create form fields with Segoe UI font
+        JTextField txtFullName = new JTextField();// add a form field with the label "Full Name"(win tktb)
+        txtFullName.setFont(new Font("Segoe UI", Font.PLAIN, 14));//kifkif
         
-        if (name != null && password != null && !name.trim().isEmpty() && !password.trim().isEmpty()) {
-            Client patient = new Client(name, password);
-            office.addClient(patient);
-            JOptionPane.showMessageDialog(this, "Patient added successfully.");
-        } else {
-            JOptionPane.showMessageDialog(this, "Invalid input. Please try again.");
-        }
+        JTextField txtPhone = new JTextField();
+        txtPhone.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        
+        
+        // Add form fields with labels
+        addFormField(formPanel, "Full Name", txtFullName, 20);
+        addFormField(formPanel, "Phone Number", txtPhone, 100);
+        
+
+        // Create buttons panel
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 20));// create a panel for the buttons 
+        buttonPanel.setBackground(Color.WHITE);
+
+        JButton btnSave = createStyledButton("Add Patient", 0, 0, 150, 40);// create a button avec un style with the text "Add Patient"
+        JButton btnCancel = createStyledButton("Cancel", 0, 0, 100, 40); // kikif
+        btnCancel.setBackground(new Color(108, 117, 125));
+
+        btnSave.addActionListener(e -> {
+            String name = txtFullName.getText().trim();
+            String phone = txtPhone.getText().trim();
+           
+            // verify that all fields are filled (name and phome number)
+            if (name.isEmpty() || phone.isEmpty() ) {
+                JOptionPane.showMessageDialog(dialog, 
+                    "Please fill in all fields.", 
+                    "Missing Information", 
+                    JOptionPane.WARNING_MESSAGE);// show a warning message
+                return;
+            }
+
+            // adding the patient to the patients list 
+            Client newPatient = new Client(name, phone);
+            office.addClient(newPatient);
+            
+            JOptionPane.showMessageDialog(dialog, 
+                "Patient added successfully!", 
+                "Success", 
+                JOptionPane.INFORMATION_MESSAGE);
+            dialog.dispose();
+        });
+
+        btnCancel.addActionListener(e -> dialog.dispose());
+
+        buttonPanel.add(btnSave);
+        buttonPanel.add(btnCancel);
+
+        // Add all panels to dialog
+        dialog.add(headerPanel, BorderLayout.NORTH);
+        dialog.add(formPanel, BorderLayout.CENTER);
+        dialog.add(buttonPanel, BorderLayout.SOUTH);
+
+        dialog.setVisible(true);
     }
 
     private void updateDoctorLabels() {
