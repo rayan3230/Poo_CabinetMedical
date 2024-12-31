@@ -1,78 +1,176 @@
-# medical cabinet (MC)
-# Table of Contents
+# Cabinet Médical (POO) (MC)
 
+## Table of Contents
 1. [Overview](#overview)
 2. [General Information](#general-information)
 3. [Tools Used](#tools-used)
-4. [Installation](#installation)
+4. [Prerequisites](#prerequisites)
 5. [Usage](#usage)
-6. [Project Structure](#project-structure)
-7. [Contributors](#contributors)
+   - [Doctor Features](#doctor-features)
+   - [Secretary Features](#secretary-features)
+6. [Key Features](#key-features)
+7. [Project Structure](#project-structure)
+8. [Contributors](#contributors)
 
 ---
 
 ## Overview
-
+The "Gestion d’un Cabinet Médical" project is software designed to simplify and organize the daily tasks of a medical office. It automates routine work and improves record-keeping, making the process more reliable and efficient while reducing manual effort. This application helps both doctors and administrative staff by providing a clear and easy-to-use interface built with Java.
+### Screenshots
+![Login](/Images/Screenshot%202024-12-31%20172821.png)
+![Main](/Images/Screenshot%202024-12-31%20172858.png)
+---
 
 ## General Information
--Features
-    
+This project aims to create an efficient and accessible system tailored to the needs of a medical cabinet. The primary functionalities include:
+
+- **Medical Records Management and Follow-up**: Centralized and secure storage of patient records, consultation details, prescriptions, and medical history.
+- **Appointment Management**: Easy scheduling, updating, and monitoring of patient appointments based on the doctor’s availability.
+- **Patient File Management**: Creation and maintenance of detailed patient profiles, including personal information, medical history, and observations.
+
+The application supports two types of users:
+- **Doctor**: Focused on patient care, consultation documentation, and medical record updates.
+- **Secretary**: Handles administrative tasks like scheduling appointments, managing patient information, and assisting in operational workflows.
+
+---
 
 ## Tools Used
-**Java Language**: Programm building
-**Java script**: Overview website
-**HTML**: Overview website
-**CSS**: Overview website
+- **Java**: Program development.
+- **JavaScript**: Overview website functionality.
+- **HTML**: Overview website structure.
+- **CSS**: Overview website design.
 
-
+### Technology Logos
 ![JAVA](/Images/Frame%203.png)
-![Java script](/Images/image%202.png)
-![CSS](/Images/image%202.png)
+![JavaScript](/Images/image%202.png)
+![CSS](/Images/image%201.png)
 ![HTML](/Images/image.png)
-## Installation
-### Prerequisites
 
+---
 
+## Prerequisites
+- **JDK**: Ensure Java Development Kit is installed and configured.
+
+---
 
 ## Usage
 
+### Doctor Features
+- Access and update detailed medical records for each patient, including consultations, diagnoses, treatments, and prescriptions.
+- Record medical history, including surgical and allergy data, and provide follow-ups for each consultation.
+- Generate and print prescriptions and medical certificates directly from the application.
+
+### Secretary Features
+- Schedule and manage appointments efficiently, ensuring minimal conflicts and quick updates for rescheduling.
+- Create and maintain patient profiles containing essential information like name, contact details, and medical history.
+- Record patient information during appointment bookings, ensuring an organized and accurate database.
+
+---
+
+## Key Features
+- **Graphical User Interface**: Intuitive and visually clear interface designed for ease of use and quick navigation.
+- **User Role Segmentation**: Separate access for doctors and secretaries, ensuring streamlined workflows and secure data management.
+- **Java-based Implementation**: Developed entirely in Java, offering robust performance and cross-platform compatibility.
+
+---
 
 ## Project Structure
-An explanation of the project files and directories.
-
 ```plaintext
 POO_CABINETMEDICAL/
-├── .vscode/
-│   └── settings.json
-├── cabinet/
-│   ├── .vscode/
-│   ├── bin/
-│   │   └── Cabinet/
-│   │       ├── Management/
-│   │       ├── Personnels/
-│   │       ├── GUI/
-│   │       ├── GUI_Advance/
-│   │       ├── Main_classes/
-│   │       ├── org/
-│   │       └── Website/
-│   │           └── App.class
-│   ├── src/
-│       ├── Cabinet/
-│       │   ├── Management/
-│       │   ├── Personnels/
-│       │   ├── GUI/
-│       │   ├── GUI_Advance/
-│       │   ├── Main_classes/
-│       │   ├── org/
-│       │   └── Website/
-│       │       ├── images/
-│       │       ├── index.html
-│       │       ├── script.js
-│       │       └── styles.css
-│       ├── App.java
-├── .classpath
-├── .project
-└── README.md
+C:
+│
+│
+├───cabinet
+│   ├───.vscode
+│   │       settings.json
+│   │
+│   ├───bin
+│   │   │   App.class
+│   │   │
+│   │   ├───Cabinet
+│   │   │   ├───Management
+│   │   │   │       Bill.class
+│   │   │   │       MedFile.class
+│   │   │   │       Medicines.class
+│   │   │   │       PatientSheet.class
+│   │   │   │       Prescription.class
+│   │   │   │       VisitDates.class
+│   │   │   │
+│   │   │   └───Personnels
+│   │   │           Accounts.class
+│   │   │           Client.class
+│   │   │           Doctor.class
+│   │   │           Secretary.class
+│   │   │
+│   │   └───Website
+│   │       │   index.html
+│   │       │   script.js
+│   │       │   styles.css
+│   │       │
+│   │       └───images
+│   │               appointment.png
+│   │               dashboard.png
+│   │               doctor.png
+│   │               login.png
+│   │               medical-file.png
+│   │               patient.png
+│   │
+│   ├───src
+│   │   │   App.java
+│   │   │
+│   │   ├───Cabinet
+│   │   │   ├───Management
+│   │   │   │       Bill.java
+│   │   │   │       MedFile.java
+│   │   │   │       Medicines.java
+│   │   │   │       PatientSheet.java
+│   │   │   │       Prescription.java
+│   │   │   │       VisitDates.java
+│   │   │   │
+│   │   │   └───Personnels
+│   │   │           Accounts.java
+│   │   │           Client.java
+│   │   │           Doctor.java
+│   │   │           Secretary.java
+│   │   │
+│   │   ├───GUI
+│   │   │       Create_Account_Frame.java
+│   │   │       Login_Doctor_menu.java
+│   │   │       Login_Frame.java
+│   │   │       Login_Sec_menu.java
+│   │   │       Main_Menu.java
+│   │   │       wlwao.java
+│   │   │
+│   │   ├───GUI_Advance
+│   │   │       AdvancedMedicalUI.java
+│   │   │
+│   │   ├───Main_classes
+│   │   │       GUI_Main.java
+│   │   │       MainFonction.java
+│   │   │       MedicalOffice.java
+│   │   │       PAnel.java
+│   │   │
+│   │   ├───org
+│   │   │
+│   │   └───Website
+│   │       │   index.html
+│   │       │   script.js
+│   │       │   styles.css
+│   │       │
+│   │       └───images
+│   │               appointment.png
+│   │               dashboard.png
+│   │               doctor.png
+│   │               login.png
+│   │               medical-file.png
+│   │               patient.png
+│   │
+│   └───UI
+└───Images
+        Frame 3.png
+        image 1.png
+        image 2.png
+        image.png
 
 ```
 
