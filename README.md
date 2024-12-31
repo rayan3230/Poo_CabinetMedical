@@ -77,37 +77,100 @@ The application supports two types of users:
 ## Project Structure
 ```plaintext
 POO_CABINETMEDICAL/
-├── .vscode/
-│   └── settings.json
-├── cabinet/
-│   ├── .vscode/
-│   ├── bin/
-│   │   └── Cabinet/
-│   │       ├── Management/
-│   │       ├── Personnels/
-│   │       ├── GUI/
-│   │       ├── GUI_Advance/
-│   │       ├── Main_classes/
-│   │       ├── org/
-│   │       └── Website/
-│   │           └── App.class
-│   ├── src/
-│       ├── Cabinet/
-│       │   ├── Management/
-│       │   ├── Personnels/
-│       │   ├── GUI/
-│       │   ├── GUI_Advance/
-│       │   ├── Main_classes/
-│       │   ├── org/
-│       │   └── Website/
-│       │       ├── images/
-│       │       ├── index.html
-│       │       ├── script.js
-│       │       └── styles.css
-│       ├── App.java
-├── .classpath
-├── .project
-└── README.md
+C:
+│
+│
+├───cabinet
+│   ├───.vscode
+│   │       settings.json
+│   │
+│   ├───bin
+│   │   │   App.class
+│   │   │
+│   │   ├───Cabinet
+│   │   │   ├───Management
+│   │   │   │       Bill.class
+│   │   │   │       MedFile.class
+│   │   │   │       Medicines.class
+│   │   │   │       PatientSheet.class
+│   │   │   │       Prescription.class
+│   │   │   │       VisitDates.class
+│   │   │   │
+│   │   │   └───Personnels
+│   │   │           Accounts.class
+│   │   │           Client.class
+│   │   │           Doctor.class
+│   │   │           Secretary.class
+│   │   │
+│   │   └───Website
+│   │       │   index.html
+│   │       │   script.js
+│   │       │   styles.css
+│   │       │
+│   │       └───images
+│   │               appointment.png
+│   │               dashboard.png
+│   │               doctor.png
+│   │               login.png
+│   │               medical-file.png
+│   │               patient.png
+│   │
+│   ├───src
+│   │   │   App.java
+│   │   │
+│   │   ├───Cabinet
+│   │   │   ├───Management
+│   │   │   │       Bill.java
+│   │   │   │       MedFile.java
+│   │   │   │       Medicines.java
+│   │   │   │       PatientSheet.java
+│   │   │   │       Prescription.java
+│   │   │   │       VisitDates.java
+│   │   │   │
+│   │   │   └───Personnels
+│   │   │           Accounts.java
+│   │   │           Client.java
+│   │   │           Doctor.java
+│   │   │           Secretary.java
+│   │   │
+│   │   ├───GUI
+│   │   │       Create_Account_Frame.java
+│   │   │       Login_Doctor_menu.java
+│   │   │       Login_Frame.java
+│   │   │       Login_Sec_menu.java
+│   │   │       Main_Menu.java
+│   │   │       wlwao.java
+│   │   │
+│   │   ├───GUI_Advance
+│   │   │       AdvancedMedicalUI.java
+│   │   │
+│   │   ├───Main_classes
+│   │   │       GUI_Main.java
+│   │   │       MainFonction.java
+│   │   │       MedicalOffice.java
+│   │   │       PAnel.java
+│   │   │
+│   │   ├───org
+│   │   │
+│   │   └───Website
+│   │       │   index.html
+│   │       │   script.js
+│   │       │   styles.css
+│   │       │
+│   │       └───images
+│   │               appointment.png
+│   │               dashboard.png
+│   │               doctor.png
+│   │               login.png
+│   │               medical-file.png
+│   │               patient.png
+│   │
+│   └───UI
+└───Images
+        Frame 3.png
+        image 1.png
+        image 2.png
+        image.png
 
 ```
 
