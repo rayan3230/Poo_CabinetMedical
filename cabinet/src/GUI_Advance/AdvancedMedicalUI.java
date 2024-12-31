@@ -1,5 +1,7 @@
 package GUI_Advance;
 
+import Cabinet.Management.Bill;
+import Cabinet.Management.Medicines;
 import Cabinet.Management.PatientSheet;
 import Cabinet.Management.VisitDates;
 import Cabinet.Personnels.Accounts;
@@ -581,7 +583,7 @@ public class AdvancedMedicalUI extends JFrame {
         infoCard.setLayout(null);
         contentPanel.add(infoCard);
 
-        // Initialize with placeholder text, will update when doctor logs in
+        // Welcome labels
         JLabel lblWelcome = new JLabel("Welcome, Doctor");
         lblWelcome.setFont(new Font("Segoe UI", Font.BOLD, 24));
         lblWelcome.setForeground(new Color(33, 37, 41));
@@ -598,12 +600,10 @@ public class AdvancedMedicalUI extends JFrame {
         lblEmail.setBounds(30, 90, 620, 25);
         infoCard.add(lblEmail);
 
-        addPanelHoverEffect(infoCard);
-
-        // Actions Panel
+        // Actions Panel - Increase height to fit all buttons
         JPanel actionsPanel = new JPanel();
         actionsPanel.setBackground(Color.WHITE);
-        actionsPanel.setBounds(60, 200, 680, 500); // Increased height
+        actionsPanel.setBounds(60, 200, 680, 500); // Increased height to 500
         actionsPanel.setLayout(null);
         contentPanel.add(actionsPanel);
 
@@ -612,29 +612,37 @@ public class AdvancedMedicalUI extends JFrame {
         lblActions.setBounds(30, 20, 620, 30);
         actionsPanel.add(lblActions);
 
+        // Add buttons with proper spacing
+        int buttonSpacing = 90;
+        int startY = 80;
+
         addActionButton(actionsPanel, "Update Profile", 
-            "Update your personal information", 80, 
+            "Update your personal information", startY, 
             e -> updateDoctorProfile());
 
         addActionButton(actionsPanel, "View Schedule", 
-            "Check your appointments", 170, 
+            "Check your appointments", startY + buttonSpacing, 
             e -> displaySchedule());
 
         addActionButton(actionsPanel, "Medical Files", 
-            "Manage patient medical records", 260, 
+            "Manage patient medical records", startY + buttonSpacing * 2, 
             e -> managePatientSheet());
 
+        addActionButton(actionsPanel, "Prescribe Medicine", 
+            "Add medicines to patient prescription", startY + buttonSpacing * 3, 
+            e -> manageMedicines());
+
         addActionButton(actionsPanel, "Logout", 
-            "Return to main menu", 350, 
+            "Return to main menu", startY + buttonSpacing * 4, 
             e -> handleLogout());
 
-        addPanelHoverEffect(actionsPanel);
-
-        // Set content panel size for scrolling
+        // Increase content panel height to accommodate all content
         contentPanel.setPreferredSize(new Dimension(800, 800));
 
-        // Create scroll pane
-        JScrollPane scrollPane = new JScrollPane(contentPanel);
+        // Create scroll pane with increased height
+        JScrollPane scrollPane = new JScrollPane(contentPanel,
+            JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+            JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setBounds(0, 0, 800, 700);
         scrollPane.getVerticalScrollBar().setUnitIncrement(16);
         panel.add(scrollPane);
@@ -739,20 +747,21 @@ public class AdvancedMedicalUI extends JFrame {
     }
 
     private JPanel createSecretaryPanel() {
+        JPanel panel = new JPanel();
+        panel.setBackground(new Color(240, 242, 245));
+        panel.setLayout(null);
+
         // Create a main scroll panel
-        JPanel mainPanel = new JPanel();
-        mainPanel.setLayout(null);
-        
-        JScrollPane scrollPane = new JScrollPane(mainPanel);
-        scrollPane.setBounds(0, 0, 800, 700);
-        scrollPane.getVerticalScrollBar().setUnitIncrement(16);
+        JPanel contentPanel = new JPanel();
+        contentPanel.setLayout(null);
+        contentPanel.setBackground(new Color(240, 242, 245));
         
         // Secretary Info Card
         JPanel infoCard = new JPanel();
         infoCard.setBackground(Color.WHITE);
         infoCard.setBounds(60, 40, 680, 140);
         infoCard.setLayout(null);
-        mainPanel.add(infoCard);
+        contentPanel.add(infoCard);
 
         // Initialize with placeholder text
         JLabel lblWelcome = new JLabel("Welcome, Secretary");
@@ -768,47 +777,58 @@ public class AdvancedMedicalUI extends JFrame {
 
         addPanelHoverEffect(infoCard);
 
-        // Actions Panel with more space for buttons
+        // Actions Panel with increased height
         JPanel actionsPanel = new JPanel();
         actionsPanel.setBackground(Color.WHITE);
         actionsPanel.setBounds(60, 200, 680, 600); // Increased height
         actionsPanel.setLayout(null);
-        mainPanel.add(actionsPanel);
+        contentPanel.add(actionsPanel);
 
         JLabel lblActions = new JLabel("Quick Actions");
         lblActions.setFont(new Font("Segoe UI", Font.BOLD, 20));
         lblActions.setBounds(30, 20, 620, 30);
         actionsPanel.add(lblActions);
 
-        // Add all action buttons with more spacing
+        // Add buttons with proper spacing
+        int buttonSpacing = 90; // Increased spacing between buttons
+        int startY = 80;
+
         addActionButton(actionsPanel, "Add Patient", 
-            "Register a new patient in the system", 80, 
+            "Register a new patient", startY, 
             e -> addPatient());
 
         addActionButton(actionsPanel, "Add Appointment", 
-            "Schedule a new appointment", 170, 
+            "Schedule a new appointment", startY + buttonSpacing, 
             e -> addAppointment());
 
-        addActionButton(actionsPanel, "View Patients", 
-            "See list of all registered patients", 260, 
-            e -> displayPatients());
-
         addActionButton(actionsPanel, "View Appointments", 
-            "Check all scheduled appointments", 350, 
+            "Check all scheduled appointments", startY + buttonSpacing * 2, 
             e -> displayAppointments());
 
+        addActionButton(actionsPanel, "Manage Medicines", 
+            "Add or update medicine inventory", startY + buttonSpacing * 3, 
+            e -> manageMedicineInventory());
+
+        addActionButton(actionsPanel, "Generate Bill", 
+            "Create bill for patient", startY + buttonSpacing * 4, 
+            e -> generateBill());
+
         addActionButton(actionsPanel, "Logout", 
-            "Return to main menu", 440, 
+            "Return to main menu", startY + buttonSpacing * 5, 
             e -> handleLogout());
 
         addPanelHoverEffect(actionsPanel);
-        
-        // Set preferred size for scroll pane
-        mainPanel.setPreferredSize(new Dimension(800, 900));
-        
-        JPanel containerPanel = new JPanel(null);
-        containerPanel.add(scrollPane);
-        return containerPanel;
+
+        // Set content panel size for scrolling
+        contentPanel.setPreferredSize(new Dimension(800, 900)); // Increased height
+
+        // Create scroll pane
+        JScrollPane scrollPane = new JScrollPane(contentPanel);
+        scrollPane.setBounds(0, 0, 800, 700);
+        scrollPane.getVerticalScrollBar().setUnitIncrement(16);
+        panel.add(scrollPane);
+
+        return panel;
     }
 
     private void handleLogout() {
@@ -1035,7 +1055,7 @@ public class AdvancedMedicalUI extends JFrame {
         lblDesc.setBounds(20, 35, 580, 25);
         buttonCard.add(lblDesc);
 
-        buttonCard.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        buttonCard.setCursor(new Cursor(Cursor.HAND_CURSOR));// l mouse twli t9ochi yed
         buttonCard.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 action.actionPerformed(null);
@@ -1157,46 +1177,47 @@ public class AdvancedMedicalUI extends JFrame {
         headerPanel.add(headerLabel);
 
         // Create form panel
-        JPanel formPanel = new JPanel();// create a panel for the form fields (tzid des patiens)
+        JPanel formPanel = new JPanel();
         formPanel.setLayout(null);
         formPanel.setBackground(Color.WHITE);
 
         // Create form fields with Segoe UI font
-        JTextField txtFullName = new JTextField();// add a form field with the label "Full Name"(win tktb)
-        txtFullName.setFont(new Font("Segoe UI", Font.PLAIN, 14));//kifkif
+        JTextField txtFullName = new JTextField();
+        txtFullName.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         
         JTextField txtPhone = new JTextField();
         txtPhone.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         
         
+
         // Add form fields with labels
         addFormField(formPanel, "Full Name", txtFullName, 20);
         addFormField(formPanel, "Phone Number", txtPhone, 100);
-        
+     
 
         // Create buttons panel
-        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 20));// create a panel for the buttons 
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 20));
         buttonPanel.setBackground(Color.WHITE);
 
-        JButton btnSave = createStyledButton("Add Patient", 0, 0, 150, 40);// create a button avec un style with the text "Add Patient"
-        JButton btnCancel = createStyledButton("Cancel", 0, 0, 100, 40); // kikif
+        JButton btnSave = createStyledButton("Add Patient", 0, 0, 150, 40);
+        JButton btnCancel = createStyledButton("Cancel", 0, 0, 100, 40);
         btnCancel.setBackground(new Color(108, 117, 125));
 
         btnSave.addActionListener(e -> {
             String name = txtFullName.getText().trim();
             String phone = txtPhone.getText().trim();
            
-            // verify that all fields are filled (name and phome number)
+
             if (name.isEmpty() || phone.isEmpty() ) {
                 JOptionPane.showMessageDialog(dialog, 
                     "Please fill in all fields.", 
                     "Missing Information", 
-                    JOptionPane.WARNING_MESSAGE);// show a warning message
+                    JOptionPane.WARNING_MESSAGE);
                 return;
             }
 
-            // adding the patient to the patients list 
             Client newPatient = new Client(name, phone);
+           
             office.addClient(newPatient);
             
             JOptionPane.showMessageDialog(dialog, 
@@ -1220,25 +1241,35 @@ public class AdvancedMedicalUI extends JFrame {
     }
 
     private void updateDoctorLabels() {
-        Component[] components = doctorPanel.getComponents();
-        for(Component c : components) {
-            if(c instanceof JPanel) {
-                JPanel card = (JPanel)c;
-                Component[] cardComps = card.getComponents();
-                for(Component cc : cardComps) {
-                    if(cc instanceof JLabel) {
-                        JLabel label = (JLabel)cc;
-                        if(label.getText().startsWith("Welcome")) {
-                            label.setText("Welcome, Dr. " + currentDoctor.FullName);
-                        } else if(label.getText().startsWith("Speciality")) {
-                            label.setText("Speciality: " + currentDoctor.Profession);
-                        } else if(label.getText().startsWith("Email")) {
-                            label.setText("Email: " + currentDoctor.Mail);
+        // Get the scroll pane from doctor panel
+        JScrollPane scrollPane = (JScrollPane) doctorPanel.getComponent(0);
+        // Get the content panel from scroll pane
+        JPanel contentPanel = (JPanel) scrollPane.getViewport().getView();
+        
+        // Find the info card panel
+        for (Component c : contentPanel.getComponents()) {
+            if (c instanceof JPanel) {
+                JPanel card = (JPanel) c;
+                if (card.getBounds().y == 40) { // This is the info card
+                    // Update labels in the info card
+                    for (Component cc : card.getComponents()) {
+                        if (cc instanceof JLabel) {
+                            JLabel label = (JLabel) cc;
+                            if (label.getBounds().y == 20) {
+                                label.setText("Welcome, Dr. " + currentDoctor.FullName);
+                            } else if (label.getBounds().y == 60) {
+                                label.setText("Speciality: " + currentDoctor.Profession);
+                            } else if (label.getBounds().y == 90) {
+                                label.setText("Email: " + currentDoctor.Mail);
+                            }
                         }
                     }
+                    break;
                 }
             }
         }
+        doctorPanel.revalidate();
+        doctorPanel.repaint();
     }
 
     private void updateSecretaryLabels() {
@@ -1425,7 +1456,7 @@ public class AdvancedMedicalUI extends JFrame {
         // Create patient sheet dialog
         JDialog sheetDialog = new JDialog(this, "New Patient Sheet", true);
         sheetDialog.setLayout(new BorderLayout());
-        sheetDialog.setSize(700, 600);
+        sheetDialog.setSize(700, 700); // Increased height to fit all content
         sheetDialog.setLocationRelativeTo(this);
 
         // Create header panel
@@ -1520,13 +1551,214 @@ public class AdvancedMedicalUI extends JFrame {
 
         // Add all panels to dialog
         sheetDialog.add(headerPanel, BorderLayout.NORTH);
-        sheetDialog.add(new JScrollPane(formPanel), BorderLayout.CENTER);
+        sheetDialog.add(formPanel, BorderLayout.CENTER);
         sheetDialog.add(buttonPanel, BorderLayout.SOUTH);
 
-        // Set preferred size for form panel
-        formPanel.setPreferredSize(new Dimension(680, 500));
-
         sheetDialog.setVisible(true);
+    }
+
+    private void manageMedicines() {
+        if (office.Clients.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No patients registered.");
+            return;
+        }
+
+        String[] patientNames = office.Clients.stream()
+                .map(c -> c.FullName)
+                .toArray(String[]::new);
+
+        String selectedPatient = (String) JOptionPane.showInputDialog(
+                this,
+                "Select a patient:",
+                "Patient Selection",
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                patientNames,
+                patientNames[0]);
+
+        if (selectedPatient == null) return;
+
+        JDialog dialog = new JDialog(this, "Prescribe Medicines", true);
+        dialog.setLayout(new BorderLayout());
+        dialog.setSize(500, 400);
+        dialog.setLocationRelativeTo(this);
+
+        JPanel formPanel = new JPanel();
+        formPanel.setLayout(new GridLayout(0, 2, 10, 10));
+        formPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+        JTextField txtMedName = new JTextField();
+        JTextField txtQuantity = new JTextField();
+        JTextField txtTimesPerDay = new JTextField();
+
+        formPanel.add(new JLabel("Medicine Name:"));
+        formPanel.add(txtMedName);
+        formPanel.add(new JLabel("Quantity:"));
+        formPanel.add(txtQuantity);
+        formPanel.add(new JLabel("Times Per Day:"));
+        formPanel.add(txtTimesPerDay);
+
+        JButton btnAdd = createStyledButton("Add Medicine", 0, 0, 150, 40);
+        btnAdd.addActionListener(e -> {
+            try {
+                Medicines med = new Medicines(
+                    txtMedName.getText(),
+                    Integer.parseInt(txtQuantity.getText()),
+                    100, // Default price
+                    Integer.parseInt(txtTimesPerDay.getText())
+                );
+                office.addMadicines(med);
+                JOptionPane.showMessageDialog(dialog, "Medicine prescribed successfully!");
+                dialog.dispose();
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(dialog, "Please enter valid numbers.");
+            }
+        });
+
+        dialog.add(formPanel, BorderLayout.CENTER);
+        dialog.add(btnAdd, BorderLayout.SOUTH);
+        dialog.setVisible(true);
+    }
+
+    private void manageMedicineInventory() {
+        JDialog dialog = new JDialog(this, "Medicine Inventory", true);
+        dialog.setLayout(new BorderLayout());
+        dialog.setSize(600, 400);
+        dialog.setLocationRelativeTo(this);
+
+        JPanel mainPanel = new JPanel();
+        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
+
+        // Display existing medicines
+        if (!office.medicines.isEmpty()) {
+            for (Medicines med : office.medicines) {
+                JPanel medPanel = new JPanel(new GridLayout(1, 4));
+                medPanel.add(new JLabel(med.Name));
+                medPanel.add(new JLabel("Qty: " + med.Quantity));
+                medPanel.add(new JLabel("Price: $" + med.Price));
+                medPanel.add(new JLabel(med.TimesPerDay + "/day"));
+                mainPanel.add(medPanel);
+            }
+        }
+
+        JButton btnAdd = createStyledButton("Add New Medicine", 0, 0, 150, 40);
+        btnAdd.addActionListener(e -> {
+            // Add new medicine dialog
+            JDialog addDialog = new JDialog(dialog, "Add Medicine", true);
+            addDialog.setLayout(new GridLayout(0, 2));
+            addDialog.setSize(300, 200);
+            addDialog.setLocationRelativeTo(this);
+            
+            JTextField txtName = new JTextField();
+            JTextField txtQuantity = new JTextField();
+            JTextField txtPrice = new JTextField();
+            
+            addDialog.add(new JLabel("Name:"));
+            addDialog.add(txtName);
+            addDialog.add(new JLabel("Quantity:"));
+            addDialog.add(txtQuantity);
+            addDialog.add(new JLabel("Price:"));
+            addDialog.add(txtPrice);
+            
+            JButton btnSave = createStyledButton("Save", 0, 0, 100, 30);
+            btnSave.addActionListener(ev -> {
+                try {
+                    Medicines newMed = new Medicines(
+                        txtName.getText(),
+                        Integer.parseInt(txtQuantity.getText()),
+                        Integer.parseInt(txtPrice.getText()),
+                        1
+                    );
+                    office.addMadicines(newMed);
+                    addDialog.dispose();
+                    dialog.dispose();
+                    manageMedicineInventory(); // Refresh the inventory view
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(addDialog, "Please enter valid numbers.");
+                }
+            });
+            
+            addDialog.add(btnSave);
+            addDialog.setVisible(true);
+        });
+
+        dialog.add(new JScrollPane(mainPanel), BorderLayout.CENTER);
+        dialog.add(btnAdd, BorderLayout.SOUTH);
+        dialog.setVisible(true);
+    }
+
+    private void generateBill() {
+        if (office.Appointments.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No appointments to bill.");
+            return;
+        }
+
+        JDialog dialog = new JDialog(this, "Generate Bill", true);
+        dialog.setLayout(new BorderLayout());
+        dialog.setSize(500, 400);
+        dialog.setLocationRelativeTo(this);
+
+        JPanel formPanel = new JPanel(new GridLayout(0, 2, 10, 10));
+        formPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+        String[] appointmentStrings = office.Appointments.stream()
+                .map(a -> a.patient.FullName + " - " + a.Date)
+                .toArray(String[]::new);
+
+        JComboBox<String> appointmentBox = new JComboBox<>(appointmentStrings);
+        JTextField txtAmount = new JTextField();
+
+        formPanel.add(new JLabel("Select Appointment:"));
+        formPanel.add(appointmentBox);
+        formPanel.add(new JLabel("Amount:"));
+        formPanel.add(txtAmount);
+
+        JButton btnGenerate = createStyledButton("Generate Bill", 0, 0, 150, 40);
+        btnGenerate.addActionListener(e -> {
+            try {
+                int amount = Integer.parseInt(txtAmount.getText());
+                int appointmentIndex = appointmentBox.getSelectedIndex();
+                VisitDates appointment = office.Appointments.get(appointmentIndex);
+                
+                Bill bill = new Bill(appointment.patient.FullName, amount, appointmentIndex, new int[]{});
+                office.addBill(bill);
+                
+                JOptionPane.showMessageDialog(dialog, "Bill generated successfully!");
+                dialog.dispose();
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(dialog, "Please enter a valid amount.");
+            }
+        });
+
+        dialog.add(formPanel, BorderLayout.CENTER);
+        dialog.add(btnGenerate, BorderLayout.SOUTH);
+        dialog.setVisible(true);
+    }
+
+    private void viewBills() {
+        if (office.bills.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No bills available.");
+            return;
+        }
+
+        JDialog dialog = new JDialog(this, "View Bills", true);
+        dialog.setLayout(new BorderLayout());
+        dialog.setSize(600, 400);
+        dialog.setLocationRelativeTo(this);
+
+        JPanel mainPanel = new JPanel();
+        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
+
+        for (Bill bill : office.bills) {
+            JPanel billPanel = new JPanel(new GridLayout(1, 3));
+            billPanel.add(new JLabel(bill.PatientName));
+            billPanel.add(new JLabel("Appointment #" + bill.AppId));
+            billPanel.add(new JLabel("$" + bill.Price));
+            mainPanel.add(billPanel);
+        }
+
+        dialog.add(new JScrollPane(mainPanel));
+        dialog.setVisible(true);
     }
 
     public static void main(String[] args) {
