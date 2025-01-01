@@ -16,7 +16,9 @@
 
 ## Overview
 The "Gestion d’un Cabinet Médical" project is software designed to simplify and organize the daily tasks of a medical office. It automates routine work and improves record-keeping, making the process more reliable and efficient while reducing manual effort. This application helps both doctors and administrative staff by providing a clear and easy-to-use interface built with Java.
-
+### Screenshots
+![Login](/Images/Screenshot%202024-12-31%20172821.png)
+![Main](/Images/Screenshot%202024-12-31%20172858.png)
 ---
 
 ## General Information
