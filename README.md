@@ -1,4 +1,4 @@
-# medical cabinet (MC)
+# Cabinet Medicale (POO) (MC)
 # Table of Contents
 
 1. [Overview](#overview)
@@ -27,7 +27,7 @@
 
 ![JAVA](/Images/Frame%203.png)
 ![Java script](/Images/image%202.png)
-![CSS](/Images/image%202.png)
+![CSS](/Images/image%201.png)
 ![HTML](/Images/image.png)
 ## Installation
 ### Prerequisites
