@@ -13,6 +13,7 @@
 
 body {
     line-height: 1.6;
+    background: var(--light-gray);
 }
 
 header {
@@ -21,6 +22,7 @@ header {
     position: fixed;
     width: 100%;
     top: 0;
+    z-index: 1000;
 }
 
 nav {
@@ -49,11 +51,24 @@ nav ul li a {
     margin: 0 0.5rem;
 }
 
+nav ul li a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+}
+
+.menu-toggle {
+    display: none;
+    cursor: pointer;
+    color: white;
+    font-size: 2rem;
+}
+
 .hero {
     background: var(--primary-color);
     color: white;
     text-align: center;
     padding: 8rem 2rem 4rem;
+    margin-top: 64px;
 }
 
 .hero h1 {
@@ -83,7 +98,7 @@ h2 {
     background: white;
     padding: 2rem;
     border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
     transform: translateY(20px);
     opacity: 0;
@@ -110,7 +125,7 @@ h2 {
 .screenshot-grid img {
     width: 100%;
     border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 footer {
@@ -119,16 +134,6 @@ footer {
     text-align: center;
     padding: 2rem;
     margin-top: 4rem;
-}
-
-@media (max-width: 768px) {
-    nav ul {
-        display: none;
-    }
-    
-    .hero h1 {
-        font-size: 2rem;
-    }
 }
 
 .modal {
@@ -159,29 +164,34 @@ footer {
     cursor: pointer;
 }
 
-.features-details {
-    margin-top: 4rem;
-    padding: 2rem;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
+@media (max-width: 768px) {
+    nav ul {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background: var(--secondary-color);
+        width: 100%;
+    }
 
-.feature-list {
-    list-style: none;
-    padding: 0;
-}
+    nav ul.active {
+        display: flex;
+    }
 
-.feature-list li {
-    padding: 1rem 0;
-    border-bottom: 1px solid #eee;
-    display: flex;
-    align-items: center;
-}
+    .menu-toggle {
+        display: block;
+    }
 
-.feature-list li:before {
-    content: "✓";
-    color: var(--primary-color);
-    margin-right: 1rem;
-    font-weight: bold;
-} 
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .screenshot-grid {
+        grid-template-columns: 1fr;
+    }
+}
