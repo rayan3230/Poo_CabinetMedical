@@ -32,7 +32,7 @@ public class AdvancedMedicalUI extends JFrame {
 
     public AdvancedMedicalUI() {
         setTitle("Medical Cabinet Management System");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//
         setBounds(100, 100, 1100, 700);
         setLocationRelativeTo(null);
         setLayout(null);
@@ -128,19 +128,19 @@ public class AdvancedMedicalUI extends JFrame {
         leftPanel.add(lblLoginSub);
 
        
-        if (currentDoctor != null) { // Different navigation buttons based on user type
-            addNavButton(leftPanel, "Dashboard", e -> showPanel(doctorPanel), 200);
-            addNavButton(leftPanel, "View Patients", e -> displayPatients(), 260);
-            addNavButton(leftPanel, "View Schedule", e -> displaySchedule(), 320);
-            addNavButton(leftPanel, "Logout", e -> handleLogout(), 380);
-        } else if (currentSecretary != null) {
-            addNavButton(leftPanel, "Dashboard", e -> showPanel(secretaryPanel), 200);
-            addNavButton(leftPanel, "Add Patient", e -> addPatient(), 260);
-            addNavButton(leftPanel, "Add Appointment", e -> addAppointment(), 320);
-            addNavButton(leftPanel, "View Patients", e -> displayPatients(), 380);
-            addNavButton(leftPanel, "View Appointments", e -> displayAppointments(), 440);
-            addNavButton(leftPanel, "Logout", e -> handleLogout(), 500);
-        }
+        // if (currentDoctor != null) { // Different navigation buttons based on user type
+        //     addNavButton(leftPanel, "Dashboard", e -> showPanel(doctorPanel), 200);
+        //     addNavButton(leftPanel, "View Patients", e -> displayPatients(), 260);
+        //     addNavButton(leftPanel, "View Schedule", e -> displaySchedule(), 320);
+        //     addNavButton(leftPanel, "Logout", e -> handleLogout(), 380);
+        // } else if (currentSecretary != null) {
+        //     addNavButton(leftPanel, "Dashboard", e -> showPanel(secretaryPanel), 200);
+        //     addNavButton(leftPanel, "Add Patient", e -> addPatient(), 260);
+        //     addNavButton(leftPanel, "Add Appointment", e -> addAppointment(), 320);
+        //     addNavButton(leftPanel, "View Patients", e -> displayPatients(), 380);
+        //     addNavButton(leftPanel, "View Appointments", e -> displayAppointments(), 440);
+        //     addNavButton(leftPanel, "Logout", e -> handleLogout(), 500);
+        // }
 
         return leftPanel;
     }
@@ -200,7 +200,7 @@ public class AdvancedMedicalUI extends JFrame {
         panel.revalidate();
         panel.repaint();
     }
-    //----------------------------------Create the Welcome panel------------------------------------------
+    //----------------------------------Create the Welcome panel------------------------------------------//
     private JPanel createMainPanel() {
         JPanel panel = new JPanel();
         panel.setBackground(new Color(240, 242, 245));
@@ -276,11 +276,12 @@ public class AdvancedMedicalUI extends JFrame {
         Panel2.setLayout(null);
         LoginInfo.add(Panel2);
 
+
         JLabel lblLogin = new JLabel("Login to Your Account");
         lblLogin.setForeground(Color.WHITE);
         lblLogin.setFont(new Font("Segoe UI", Font.BOLD, 28));
         lblLogin.setHorizontalAlignment(SwingConstants.CENTER);
-        lblLogin.setBounds(0, 30, 700, 40);
+        lblLogin.setBounds(50, 130,600, 40);
         Panel2.add(lblLogin);
 
         
@@ -347,7 +348,7 @@ public class AdvancedMedicalUI extends JFrame {
 
         
         JPanel bgPanel = new JPanel();
-        bgPanel.setBackground(new Color(33, 37, 41));
+        bgPanel.setBackground(new Color(33, 37, 41)); 
         bgPanel.setBounds(0, 0, 1100, 200);
         panel.add(bgPanel);
 
@@ -355,11 +356,11 @@ public class AdvancedMedicalUI extends JFrame {
         JPanel CreateAccountPanel = new JPanel();
         CreateAccountPanel.setBackground(Color.WHITE);
         CreateAccountPanel.setLayout(null);
-        CreateAccountPanel.setPreferredSize(new Dimension(700, 800)); // size ta3 scroll pane yji kbir
+        CreateAccountPanel.setPreferredSize(new Dimension(600,650)); // size ta3 scroll pane yji kbir
 
         
         JPanel Panel2 = new JPanel();
-        Panel2.setBackground(new Color(21, 101, 192));
+        Panel2.setBackground(new Color(33, 37, 41));
         Panel2.setBounds(0, 0, 700, 100);
         Panel2.setLayout(null);
         CreateAccountPanel.add(Panel2);
@@ -399,6 +400,7 @@ public class AdvancedMedicalUI extends JFrame {
         JTextField txtEmail = new JTextField();
         JTextField txtSpc = new JTextField();
         JTextField txtPhonenum = new JTextField();
+       
 
         addFormField(CreateAccountPanel, "Full Name", txtFullname, 210);
         addFormField(CreateAccountPanel, "Password", txtPassword, 280);
@@ -412,7 +414,7 @@ public class AdvancedMedicalUI extends JFrame {
             txtSpc.setEnabled(false);
             txtPhonenum.setEnabled(false);
         });
-        // klch
+        //klch
         rdbdoctor.addActionListener(e -> {
             txtEmail.setEnabled(true);
             txtSpc.setEnabled(true);
@@ -482,6 +484,7 @@ public class AdvancedMedicalUI extends JFrame {
                 txtPhonenum.getText(),
                 new String(txtPassword.getPassword())
             );
+            
             accounts.AddDocAccount(doc);
         } else {
             Secretary sec = new Secretary(
@@ -491,7 +494,7 @@ public class AdvancedMedicalUI extends JFrame {
             accounts.AddSecAccount(sec);
         }
         JOptionPane.showMessageDialog(this, "Account created successfully!");
-        tabbedPane.setSelectedIndex(1); // Switch to login tab
+        tabbedPane.setSelectedIndex(0); // Switch to login tab
     }
 
     private void handleLogin(JRadioButton rdbDoc, JRadioButton rdbSec, JPasswordField txtPassword) {
@@ -529,7 +532,7 @@ public class AdvancedMedicalUI extends JFrame {
             JOptionPane.showMessageDialog(this, "Please select an account type.");
         }
     }
-
+//----------------------------------------create doctor Panel---------------------------------------------//
     private JPanel createDoctorPanel() {
         JPanel panel = new JPanel();
         panel.setBackground(new Color(240, 242, 245));
