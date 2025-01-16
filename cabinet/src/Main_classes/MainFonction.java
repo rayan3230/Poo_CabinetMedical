@@ -127,7 +127,7 @@ public class MainFonction {
                     loggedIn = handleLogin("Secretary");
 
                     if (loggedIn) {
-                        System.out.println("Welcome, Secretary!");
+                        System.out.println("You have successfully logged in, welcome to the terminal.");
                     } else {
                         System.out.println("Something went wrong, please check your login details.");
 
@@ -178,7 +178,7 @@ public class MainFonction {
 
             }
 
-            if ((HaveAccount != 1 || HaveAccount != 2) && (loggedType != 1 || loggedType != 2)) {
+            if ((HaveAccount != 1 && HaveAccount != 2) || (loggedType != 1 && loggedType != 2)) {
                 System.out.println("please only enter the values 1 or 2 for both question and not anything else ");
             }
 
@@ -522,15 +522,6 @@ public class MainFonction {
             }
         } else if (loggedType == 2) { // secretary account
             // ---------------------------------------------------------------------------------
-            do {
-                loggedIn = handleLogin("Secretary");
-
-                if (loggedIn) {
-                    System.out.println("Welcome, Secretary!");
-                } else {
-                    System.out.println("Invalid login credentials.");
-                }
-            } while (!loggedIn);
 
             if (loggedIn) {
 
