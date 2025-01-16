@@ -47,13 +47,7 @@ public class MainFonction {
 
         do {
             System.out.println("\n");
-
-            System.out.println("\n");
-            System.out.println("\n");
             System.out.println("------WELCOME-------------");
-            System.out.println("\n");
-            System.out.println("\n");
-            System.out.println("\n");
             System.out.println("\n");
             System.out.print("what type of account do you have 1-doctor or 2-secretary  : ");
             loggedType = Scan.nextInt();
@@ -188,7 +182,7 @@ public class MainFonction {
                 System.out.println("please only enter the values 1 or 2 for both question and not anything else ");
             }
 
-        } while (!loggedIn || !addingIn);
+        } while (!loggedIn && !addingIn);
 
         if (loggedType == 1) { // Doctor account
             // ------------------------------------------------------------------------------------------
