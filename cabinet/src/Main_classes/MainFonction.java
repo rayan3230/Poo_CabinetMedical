@@ -64,9 +64,11 @@ public class MainFonction {
                     loggedIn = handleLogin("Doctor");
 
                     if (loggedIn) {
+                        System.out.println("\n");
                         System.out.println("You have successfully logged in, welcome to the terminal.");
 
                     } else {
+                        System.out.println("\n");
                         System.out.println("Something went wrong, please check your login details.");
 
                         System.out.println("1- try again \n2- creat an account ");
@@ -101,16 +103,18 @@ public class MainFonction {
                     Doctor Doc = new Doctor(accountName, accountpassword);
 
                     Account.AddDocAccount(Doc);
-
+                    System.out.println("\n");
                     System.out.println("your account has been added, please log in now ");
                     addingIn = true;
 
                     loggedIn = handleLogin("Doctor");
 
                     if (loggedIn) {
+                        System.out.println("\n");
                         System.out.println("You have successfully logged in, welcome to the terminal.");
 
                     } else {
+                        System.out.println("\n");
                         System.out.println("Something went wrong, please check your login details.");
 
                     }
@@ -127,8 +131,10 @@ public class MainFonction {
                     loggedIn = handleLogin("Secretary");
 
                     if (loggedIn) {
+                        System.out.println("\n");
                         System.out.println("You have successfully logged in, welcome to the terminal.");
                     } else {
+                        System.out.println("\n");
                         System.out.println("Something went wrong, please check your login details.");
 
                         System.out.println("1- try again \n2- creat an account ");
@@ -161,15 +167,17 @@ public class MainFonction {
 
                     Account.AddSecAccount(Sec);
                     addingIn = true;
-
+                    System.out.println("\n");
                     System.out.println("your account has been added, please log in now ");
 
                     loggedIn = handleLogin("Secretary");
 
                     if (loggedIn) {
+                        System.out.println("\n");
                         System.out.println("You have successfully logged in, welcome to the terminal.");
 
                     } else {
+                        System.out.println("\n");
                         System.out.println("Something went wrong, please check your login details.");
 
                     }
@@ -211,6 +219,7 @@ public class MainFonction {
                     System.out.print("Choose an option: ");
 
                     int number = Scan.nextInt();
+                    System.out.println("\n");
 
                     switch (number) {
                         // ----------------------- ADD PATIENT TO TERMINAL----------------------
