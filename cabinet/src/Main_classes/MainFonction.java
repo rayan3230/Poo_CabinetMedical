@@ -46,7 +46,15 @@ public class MainFonction {
         int loggedType;
 
         do {
+            System.out.println("\n");
 
+            System.out.println("\n");
+            System.out.println("\n");
+            System.out.println("------WELCOME-------------");
+            System.out.println("\n");
+            System.out.println("\n");
+            System.out.println("\n");
+            System.out.println("\n");
             System.out.print("what type of account do you have 1-doctor or 2-secretary  : ");
             loggedType = Scan.nextInt();
 
