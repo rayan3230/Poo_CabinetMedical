@@ -37,7 +37,7 @@ public class AdvancedMedicalUI extends JFrame {
         setLocationRelativeTo(null);
         setLayout(null);
 
-        // Initialize panels first
+        // ---------------------------------------------Initialize all panels first in the Gui
         mainPanel = createMainPanel();
         loginPanel = createLoginPanel();
         registrationPanel = createRegistrationPanel();
@@ -50,9 +50,9 @@ public class AdvancedMedicalUI extends JFrame {
         mainPanel.setVisible(true);
 
         // Initialize the slide timer
-        slideTimer = new Timer(10, e -> slideLeftPanel());
+        slideTimer = new Timer(10, e -> slideLeftPanel());// fir sliding the left panel (black one ta3 MC)
         
-        // Create tabbed pane but keep it hidden initially
+        // Create tabbed pane w hidden it 
         tabbedPane = new JTabbedPane();
         tabbedPane.setBounds(0, 0, 1100, 700);
         tabbedPane.addTab("Login", loginPanel);
@@ -60,7 +60,7 @@ public class AdvancedMedicalUI extends JFrame {
         add(tabbedPane);
         tabbedPane.setVisible(false);
         
-        // Hide the tab header
+        // Hide the tab header (nkhbo TAb header w nbdloh b des buttons )
         tabbedPane.setUI(new javax.swing.plaf.basic.BasicTabbedPaneUI() {
             @Override
             protected int calculateTabAreaHeight(int tabPlacement, int horizRunCount, int maxTabHeight) {
@@ -68,7 +68,7 @@ public class AdvancedMedicalUI extends JFrame {
             }
         });
         
-        // Create but hide the left panel initially
+        // Create and hide the left panel { Black one}
         leftPanel = createLeftPanel();
         leftPanel.setBounds(leftPanelX, 0, 300, 700);
         add(leftPanel);
@@ -78,17 +78,17 @@ public class AdvancedMedicalUI extends JFrame {
         doctorPanel.setVisible(false);
         secretaryPanel.setVisible(false);
 
-        // Add buttons to main panel to navigate to login/register
-        JButton btnGetStarted = createStyledButton("Get Started", 300, 420, 100, 40);
+        
+        JButton btnGetStarted = createStyledButton("Get Started", 300, 420, 100, 40);  // Create Button in the first panel (welcoming panel) 
         btnGetStarted.addActionListener(e -> {
-            mainPanel.setVisible(false);
-            tabbedPane.setVisible(true);
-            tabbedPane.setSelectedIndex(0); // Show login panel first
+            mainPanel.setVisible(false);// tkhbi main panel
+            tabbedPane.setVisible(true); // tbdelha b tabbed pane   
+            tabbedPane.setSelectedIndex(0); //tactivi login panel li jaya f tabbed pane
         });
         mainPanel.add(btnGetStarted);
     }
 
-    private void startSlideAnimation() {
+    private void startSlideAnimation() { // une animation pour afficher le panel noir
         if (!isSliding) {
             isSliding = true;
             leftPanel.setVisible(true);
@@ -96,7 +96,7 @@ public class AdvancedMedicalUI extends JFrame {
         }
     }
 
-    private void slideLeftPanel() {
+    private void slideLeftPanel() { // the animation of the left panel
         if (leftPanelX < 0) {
             leftPanelX += 20;
             leftPanel.setBounds(leftPanelX, 0, 300, 700);
@@ -108,27 +108,27 @@ public class AdvancedMedicalUI extends JFrame {
         }
     }
 
-    private JPanel createLeftPanel() {
+    private JPanel createLeftPanel() { // Design the left panel (black one)
         JPanel leftPanel = new JPanel();
-        leftPanel.setBackground(new Color(33, 37, 41));
-        leftPanel.setPreferredSize(new Dimension(300, 700));
+        leftPanel.setBackground(new Color(33, 37, 41)); // Black color
+        leftPanel.setPreferredSize(new Dimension(300, 700)); //
         leftPanel.setLayout(null);
 
-        // Logo
-        JLabel lblLogo = new JLabel("MC");
-        lblLogo.setForeground(Color.WHITE);
-        lblLogo.setFont(new Font("Segoe UI", Font.BOLD, 42));
-        lblLogo.setBounds(40, 40, 220, 60);
-        leftPanel.add(lblLogo);
+       
+        JLabel lblLogin = new JLabel("MC"); // Logo
+        lblLogin.setForeground(Color.WHITE);   
+        lblLogin.setFont(new Font("Segoe UI", Font.BOLD, 42));
+        lblLogin.setBounds(40, 40, 220, 60);
+        leftPanel.add(lblLogin);
 
-        JLabel lblLogoSub = new JLabel("Medical Cabinet");
-        lblLogoSub.setForeground(new Color(158, 161, 178));
-        lblLogoSub.setFont(new Font("Segoe UI", Font.PLAIN, 16));
-        lblLogoSub.setBounds(40, 100, 220, 25);
-        leftPanel.add(lblLogoSub);
+        JLabel lblLoginSub = new JLabel("Medical Cabinet"); // Subtitle 
+        lblLoginSub.setForeground(new Color(158, 161, 178));
+        lblLoginSub.setFont(new Font("Segoe UI", Font.PLAIN, 16));
+        lblLoginSub.setBounds(40, 100, 220, 25);
+        leftPanel.add(lblLoginSub);
 
-        // Different navigation buttons based on user type
-        if (currentDoctor != null) {
+       
+        if (currentDoctor != null) { // Different navigation buttons based on user type
             addNavButton(leftPanel, "Dashboard", e -> showPanel(doctorPanel), 200);
             addNavButton(leftPanel, "View Patients", e -> displayPatients(), 260);
             addNavButton(leftPanel, "View Schedule", e -> displaySchedule(), 320);
@@ -159,7 +159,7 @@ public class AdvancedMedicalUI extends JFrame {
         button.setForeground(Color.WHITE);
         button.setFocusPainted(false);
         button.setBorderPainted(false);
-        button.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        button.setCursor(new Cursor(Cursor.HAND_CURSOR));// tbld el cursor
         
         button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -173,7 +173,7 @@ public class AdvancedMedicalUI extends JFrame {
         return button;
     }
 
-    private void showPanel(JPanel panel) {
+    private void showPanel(JPanel panel) { // void bch nbdel el panel
         // Position the panels correctly
         if (panel == doctorPanel || panel == secretaryPanel) {
             panel.setBounds(300, 0, 800, 700); // Position to the right of left panel
@@ -188,10 +188,10 @@ public class AdvancedMedicalUI extends JFrame {
         doctorPanel.setVisible(false);
         secretaryPanel.setVisible(false);
         
-        // Show the selected panel
+        // display the selected panel
         panel.setVisible(true);
         
-        // Ensure panel is added to frame if not already
+        // Nchofo ida rahi deja visible wla la
         if (!Arrays.asList(getContentPane().getComponents()).contains(panel)) {
             add(panel);
         }
@@ -200,53 +200,35 @@ public class AdvancedMedicalUI extends JFrame {
         panel.revalidate();
         panel.repaint();
     }
-
+    //----------------------------------Create the Welcome panel------------------------------------------
     private JPanel createMainPanel() {
         JPanel panel = new JPanel();
         panel.setBackground(new Color(240, 242, 245));
         panel.setLayout(null);
 
-        // Background Image Panel
+       
         JPanel bgPanel = new JPanel();
         bgPanel.setBackground(new Color(33, 37, 41));
         bgPanel.setBounds(0, 0, 1100, 300);
         panel.add(bgPanel);
 
-        // Welcome Card
-        JPanel welcomeCard = new JPanel();
-        welcomeCard.setBackground(Color.WHITE);
-        welcomeCard.setBounds(200, 150, 700, 450);
-        welcomeCard.setLayout(null);
-        panel.add(welcomeCard);
+      
+        JPanel First_Panel_Welcome = new JPanel();
+        First_Panel_Welcome.setBackground(Color.WHITE);
+        First_Panel_Welcome.setBounds(200, 150, 700, 450);
+        First_Panel_Welcome.setLayout(null);
+        panel.add(First_Panel_Welcome);
 
-        // Logo at the top with colored background
-        JPanel logoPanel = new JPanel();
-        logoPanel.setBackground(new Color(21, 101, 192));
-        logoPanel.setBounds(0, 0, 700, 150);
-        logoPanel.setLayout(null);
-        welcomeCard.add(logoPanel);
+   
 
-        JLabel lblLogo = new JLabel("MC");
-        lblLogo.setForeground(Color.WHITE);
-        lblLogo.setFont(new Font("Segoe UI", Font.BOLD, 72));
-        lblLogo.setHorizontalAlignment(SwingConstants.CENTER);
-        lblLogo.setBounds(0, 20, 700, 80);
-        logoPanel.add(lblLogo);
-
-        JLabel lblLogoSub = new JLabel("Medical Cabinet");
-        lblLogoSub.setForeground(Color.WHITE);
-        lblLogoSub.setFont(new Font("Segoe UI", Font.PLAIN, 24));
-        lblLogoSub.setHorizontalAlignment(SwingConstants.CENTER);
-        lblLogoSub.setBounds(0, 100, 700, 30);
-        logoPanel.add(lblLogoSub);
-
-        // Welcome message
+       
+        
         JLabel lblWelcome = new JLabel("Welcome to Our Medical Office");
         lblWelcome.setFont(new Font("Segoe UI", Font.BOLD, 32));
         lblWelcome.setForeground(new Color(33, 37, 41));
         lblWelcome.setHorizontalAlignment(SwingConstants.CENTER);
         lblWelcome.setBounds(50, 180, 600, 50);
-        welcomeCard.add(lblWelcome);
+        First_Panel_Welcome.add(lblWelcome);
 
         // Description with icons
         JLabel lblDesc = new JLabel("<html><center>✓ Manage Appointments<br>✓ Track Patient Records<br>✓ Efficient Workflow</center></html>");
@@ -254,85 +236,72 @@ public class AdvancedMedicalUI extends JFrame {
         lblDesc.setForeground(new Color(108, 117, 125));
         lblDesc.setHorizontalAlignment(SwingConstants.CENTER);
         lblDesc.setBounds(100, 250, 500, 100);
-        welcomeCard.add(lblDesc);
+        First_Panel_Welcome.add(lblDesc);
 
-        // Decorative elements
-        JSeparator separator1 = new JSeparator();
-        separator1.setBounds(150, 370, 400, 2);
-        separator1.setForeground(new Color(21, 101, 192));
-        welcomeCard.add(separator1);
-
-        // Footer text
-        JLabel lblFooter = new JLabel("© 2024 Medical Cabinet Management System");
+        
+        JLabel lblFooter = new JLabel("© 2025 Medical Cabinet Management System");
         lblFooter.setFont(new Font("Segoe UI", Font.PLAIN, 12));
         lblFooter.setForeground(new Color(108, 117, 125));
         lblFooter.setHorizontalAlignment(SwingConstants.CENTER);
         lblFooter.setBounds(150, 390, 400, 20);
-        welcomeCard.add(lblFooter);
+        First_Panel_Welcome.add(lblFooter);
 
-        // Add shadow effect
-        welcomeCard.setBorder(BorderFactory.createCompoundBorder(
-            BorderFactory.createLineBorder(new Color(0, 0, 0, 20), 1),
-            BorderFactory.createEmptyBorder(0, 0, 0, 0)
-        ));
-
-        // Add hover effect
-        addPanelHoverEffect(welcomeCard);
+     
 
         return panel;
     }
-
+//****************************************create LOgin Panel********************************************* */
     private JPanel createLoginPanel() {
-        JPanel panel = new JPanel();
+        JPanel panel = new JPanel();//main panel
         panel.setBackground(new Color(240, 242, 245));
         panel.setLayout(null);
 
-        // Background Panel
-        JPanel bgPanel = new JPanel();
+       
+        JPanel bgPanel = new JPanel();//brk pour la color ta3 background
         bgPanel.setBackground(new Color(33, 37, 41));
         bgPanel.setBounds(0, 0, 1100, 200);
         panel.add(bgPanel);
 
-        // Login Card
-        JPanel loginCard = new JPanel();
-        loginCard.setBackground(Color.WHITE);
-        loginCard.setBounds(200, 100, 700, 500);
-        loginCard.setLayout(null);
-        panel.add(loginCard);
+       
+        JPanel LoginInfo = new JPanel();//panel ta3 les button w labels etc...
+        LoginInfo.setBackground(Color.WHITE);
+        LoginInfo.setBounds(200, 100, 700, 500);
+        LoginInfo.setLayout(null);
+        panel.add(LoginInfo);
 
-        // Logo at the top with colored background
-        JPanel logoPanel = new JPanel();
-        logoPanel.setBackground(new Color(21, 101, 192));
-        logoPanel.setBounds(0, 0, 700, 100);
-        logoPanel.setLayout(null);
-        loginCard.add(logoPanel);
+        
+        JPanel Panel2 = new JPanel();// Logo at the top 
+        Panel2.setBackground(new Color(21, 101, 192));
+        Panel2.setBounds(0, 0, 700, 100);
+        Panel2.setLayout(null);
+        LoginInfo.add(Panel2);
 
-        JLabel lblLogo = new JLabel("Login to Your Account");
-        lblLogo.setForeground(Color.WHITE);
-        lblLogo.setFont(new Font("Segoe UI", Font.BOLD, 28));
-        lblLogo.setHorizontalAlignment(SwingConstants.CENTER);
-        lblLogo.setBounds(0, 30, 700, 40);
-        logoPanel.add(lblLogo);
+        JLabel lblLogin = new JLabel("Login to Your Account");
+        lblLogin.setForeground(Color.WHITE);
+        lblLogin.setFont(new Font("Segoe UI", Font.BOLD, 28));
+        lblLogin.setHorizontalAlignment(SwingConstants.CENTER);
+        lblLogin.setBounds(0, 30, 700, 40);
+        Panel2.add(lblLogin);
 
-        // Account Type Selection with modern radio buttons
+        
         JLabel lblAccountType = new JLabel("Select Account Type");
         lblAccountType.setFont(new Font("Segoe UI", Font.BOLD, 16));
         lblAccountType.setBounds(50, 120, 600, 30);
-        loginCard.add(lblAccountType);
+        LoginInfo.add(lblAccountType);
 
         JRadioButton rdbDoc = new JRadioButton("Doctor");
         rdbDoc.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         rdbDoc.setBounds(50, 160, 150, 30);
         rdbDoc.setBackground(Color.WHITE);
-        loginCard.add(rdbDoc);
+        LoginInfo.add(rdbDoc);
 
         JRadioButton rdbSec = new JRadioButton("Secretary");
         rdbSec.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         rdbSec.setBounds(210, 160, 150, 30);
         rdbSec.setBackground(Color.WHITE);
-        loginCard.add(rdbSec);
+        LoginInfo.add(rdbSec);
 
-        ButtonGroup group = new ButtonGroup();
+        ButtonGroup group = new ButtonGroup();//bch t9der tkhyer wahda brk
         group.add(rdbDoc);
         group.add(rdbSec);
 
@@ -341,38 +310,33 @@ public class AdvancedMedicalUI extends JFrame {
         txtPassword = new JPasswordField();
 
         // Add the fields to the panel with modern styling
-        addFormField(loginCard, "Username", txtUsername, 210);
-        addFormField(loginCard, "Password", txtPassword, 290);
+        addFormField(LoginInfo, "Username", txtUsername, 210);// add the username field
+        addFormField(LoginInfo, "Password", txtPassword, 290);// add the password field
 
         // Login Button with modern styling
         JButton btnLogin = createStyledButton("Login", 50, 380, 600, 45);
-        btnLogin.addActionListener(e -> handleLogin(rdbDoc, rdbSec, txtPassword));
-        loginCard.add(btnLogin);
+        btnLogin.addActionListener(e -> handleLogin(rdbDoc, rdbSec, txtPassword));// bch ydir login b la function handleLogin 
+        LoginInfo.add(btnLogin);
 
-        // Add "Create Account" link
-        JLabel lblNoAccount = new JLabel("Don't have an account?");
+        
+        JLabel lblNoAccount = new JLabel("Don't have an account?");//Label pour creer un compte
         lblNoAccount.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         lblNoAccount.setForeground(new Color(108, 117, 125));
         lblNoAccount.setBounds(50, 440, 200, 30);
-        loginCard.add(lblNoAccount);
+        LoginInfo.add(lblNoAccount);
 
-        JButton btnToRegister = new JButton("Create one");
+        JButton btnToRegister = new JButton("Create one"); // Button pour creer un compte (troh l panel 2)
         btnToRegister.setBounds(250, 440, 100, 30);
         btnToRegister.setFont(new Font("Segoe UI", Font.BOLD, 14));
         btnToRegister.setForeground(new Color(21, 101, 192));
         btnToRegister.setContentAreaFilled(false);
         btnToRegister.setBorderPainted(false);
         btnToRegister.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        btnToRegister.addActionListener(e -> tabbedPane.setSelectedIndex(1));
-        loginCard.add(btnToRegister);
+        btnToRegister.addActionListener(e -> tabbedPane.setSelectedIndex(1)); //tbdl l panel f tappedpanel
+        LoginInfo.add(btnToRegister);
 
-        // Add shadow effect
-        loginCard.setBorder(BorderFactory.createCompoundBorder(
-            BorderFactory.createLineBorder(new Color(0, 0, 0, 20), 1),
-            BorderFactory.createEmptyBorder(0, 0, 0, 0)
-        ));
-
-        addPanelHoverEffect(loginCard);
+     
+    
         return panel;
     }
 
@@ -381,49 +345,49 @@ public class AdvancedMedicalUI extends JFrame {
         panel.setBackground(new Color(240, 242, 245));
         panel.setLayout(null);
 
-        // Background Panel
+        
         JPanel bgPanel = new JPanel();
         bgPanel.setBackground(new Color(33, 37, 41));
         bgPanel.setBounds(0, 0, 1100, 200);
         panel.add(bgPanel);
 
-        // Create a container panel for the scroll pane
-        JPanel containerPanel = new JPanel();
-        containerPanel.setBackground(Color.WHITE);
-        containerPanel.setLayout(null);
-        containerPanel.setPreferredSize(new Dimension(700, 800)); // Taller to accommodate all content
+        // Create the scroll pane
+        JPanel CreateAccountPanel = new JPanel();
+        CreateAccountPanel.setBackground(Color.WHITE);
+        CreateAccountPanel.setLayout(null);
+        CreateAccountPanel.setPreferredSize(new Dimension(700, 800)); // size ta3 scroll pane yji kbir
 
-        // Logo at the top with colored background
-        JPanel logoPanel = new JPanel();
-        logoPanel.setBackground(new Color(21, 101, 192));
-        logoPanel.setBounds(0, 0, 700, 100);
-        logoPanel.setLayout(null);
-        containerPanel.add(logoPanel);
+        
+        JPanel Panel2 = new JPanel();
+        Panel2.setBackground(new Color(21, 101, 192));
+        Panel2.setBounds(0, 0, 700, 100);
+        Panel2.setLayout(null);
+        CreateAccountPanel.add(Panel2);
 
-        JLabel lblLogo = new JLabel("Create New Account");
-        lblLogo.setForeground(Color.WHITE);
-        lblLogo.setFont(new Font("Segoe UI", Font.BOLD, 28));
-        lblLogo.setHorizontalAlignment(SwingConstants.CENTER);
-        lblLogo.setBounds(0, 30, 700, 40);
-        logoPanel.add(lblLogo);
+        JLabel lblLogin = new JLabel("Create New Account");
+        lblLogin.setForeground(Color.WHITE);
+        lblLogin.setFont(new Font("Segoe UI", Font.BOLD, 28));
+        lblLogin.setHorizontalAlignment(SwingConstants.CENTER);
+        lblLogin.setBounds(0, 30, 700, 40);
+        Panel2.add(lblLogin);
 
-        // Account Type Selection
+        
         JLabel lblAccountType = new JLabel("Select Account Type");
         lblAccountType.setFont(new Font("Segoe UI", Font.BOLD, 16));
         lblAccountType.setBounds(50, 120, 600, 30);
-        containerPanel.add(lblAccountType);
+        CreateAccountPanel.add(lblAccountType);
 
         JRadioButton rdbdoctor = new JRadioButton("Doctor");
         rdbdoctor.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         rdbdoctor.setBounds(50, 160, 150, 30);
         rdbdoctor.setBackground(Color.WHITE);
-        containerPanel.add(rdbdoctor);
+        CreateAccountPanel.add(rdbdoctor);
 
         JRadioButton rdbsecretery = new JRadioButton("Secretary");
         rdbsecretery.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         rdbsecretery.setBounds(210, 160, 150, 30);
         rdbsecretery.setBackground(Color.WHITE);
-        containerPanel.add(rdbsecretery);
+        CreateAccountPanel.add(rdbsecretery);
 
         ButtonGroup group = new ButtonGroup();
         group.add(rdbdoctor);
@@ -436,40 +400,40 @@ public class AdvancedMedicalUI extends JFrame {
         JTextField txtSpc = new JTextField();
         JTextField txtPhonenum = new JTextField();
 
-        addFormField(containerPanel, "Full Name", txtFullname, 210);
-        addFormField(containerPanel, "Password", txtPassword, 280);
-        addFormField(containerPanel, "Email", txtEmail, 350);
-        addFormField(containerPanel, "Specialization", txtSpc, 420);
-        addFormField(containerPanel, "Phone Number", txtPhonenum, 490);
+        addFormField(CreateAccountPanel, "Full Name", txtFullname, 210);
+        addFormField(CreateAccountPanel, "Password", txtPassword, 280);
+        addFormField(CreateAccountPanel, "Email", txtEmail, 350);
+        addFormField(CreateAccountPanel, "Specialization", txtSpc, 420);
+        addFormField(CreateAccountPanel, "Phone Number", txtPhonenum, 490);
 
-        // Disable fields for secretary
+        // Disable fields for secretary ghir 2
         rdbsecretery.addActionListener(e -> {
             txtEmail.setEnabled(false);
             txtSpc.setEnabled(false);
             txtPhonenum.setEnabled(false);
         });
-
+        // klch
         rdbdoctor.addActionListener(e -> {
             txtEmail.setEnabled(true);
             txtSpc.setEnabled(true);
             txtPhonenum.setEnabled(true);
         });
 
-        // Create Account Button
+        
         JButton btnConfirm = createStyledButton("Create Account", 50, 560, 600, 45);
         btnConfirm.addActionListener(e -> {
-            if (validateRegistration(rdbdoctor, rdbsecretery, txtFullname, txtPassword)) {
-                createAccount(rdbdoctor, txtFullname, txtPassword, txtEmail, txtSpc, txtPhonenum);
+            if (validateRegistration(rdbdoctor, rdbsecretery, txtFullname, txtPassword)) {// bch ydir validation ida ga3 rahom m3mrin
+                createAccount(rdbdoctor, txtFullname, txtPassword, txtEmail, txtSpc, txtPhonenum);//bch ydir el account b la fonction createAccount
             }
         });
-        containerPanel.add(btnConfirm);
+        CreateAccountPanel.add(btnConfirm);
 
         // Add "Back to Login" link
         JLabel lblHaveAccount = new JLabel("Already have an account?");
         lblHaveAccount.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         lblHaveAccount.setForeground(new Color(108, 117, 125));
         lblHaveAccount.setBounds(200, 620, 200, 30);
-        containerPanel.add(lblHaveAccount);
+        CreateAccountPanel.add(lblHaveAccount);
 
         JButton btnToLogin = new JButton("Login here");
         btnToLogin.setBounds(400, 620, 100, 30);
@@ -479,10 +443,10 @@ public class AdvancedMedicalUI extends JFrame {
         btnToLogin.setBorderPainted(false);
         btnToLogin.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btnToLogin.addActionListener(e -> tabbedPane.setSelectedIndex(0));
-        containerPanel.add(btnToLogin);
+        CreateAccountPanel.add(btnToLogin);
 
         // Create scroll pane and add the container panel to it
-        JScrollPane scrollPane = new JScrollPane(containerPanel);
+        JScrollPane scrollPane = new JScrollPane(CreateAccountPanel);
         scrollPane.setBounds(200, 100, 700, 550);
         scrollPane.setBorder(null);
         scrollPane.getVerticalScrollBar().setUnitIncrement(16);
@@ -1308,10 +1272,10 @@ public class AdvancedMedicalUI extends JFrame {
         headerPanel.add(headerLabel);
 
         // Create a container panel for scrolling
-        JPanel containerPanel = new JPanel();
-        containerPanel.setBackground(Color.WHITE);
-        containerPanel.setLayout(null);
-        containerPanel.setPreferredSize(new Dimension(580, 700));
+        JPanel CreateAccountPanel = new JPanel();
+        CreateAccountPanel.setBackground(Color.WHITE);
+        CreateAccountPanel.setLayout(null);
+        CreateAccountPanel.setPreferredSize(new Dimension(580, 700));
 
         // Create form fields
         JTextField txtFullname = new JTextField(currentDoctor.FullName);
@@ -1321,14 +1285,14 @@ public class AdvancedMedicalUI extends JFrame {
         JPasswordField txtNewPassword = new JPasswordField();
 
         // Add form fields with more spacing
-        addFormField(containerPanel, "Full Name", txtFullname, 20);
-        addFormField(containerPanel, "Email", txtEmail, 100);
-        addFormField(containerPanel, "Specialization", txtSpecialization, 180);
-        addFormField(containerPanel, "Phone Number", txtPhone, 260);
-        addFormField(containerPanel, "New Password (leave blank to keep current)", txtNewPassword, 340);
+        addFormField(CreateAccountPanel, "Full Name", txtFullname, 20);
+        addFormField(CreateAccountPanel, "Email", txtEmail, 100);
+        addFormField(CreateAccountPanel, "Specialization", txtSpecialization, 180);
+        addFormField(CreateAccountPanel, "Phone Number", txtPhone, 260);
+        addFormField(CreateAccountPanel, "New Password (leave blank to keep current)", txtNewPassword, 340);
 
         // Create scroll pane with vertical scrolling only
-        JScrollPane scrollPane = new JScrollPane(containerPanel, 
+        JScrollPane scrollPane = new JScrollPane(CreateAccountPanel, 
             JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, 
             JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setBorder(null);
