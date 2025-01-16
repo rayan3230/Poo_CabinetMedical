@@ -207,6 +207,7 @@ public class MainFonction {
                     System.out.println("14. calculate bill ");
                     System.out.println("15. display bills");
                     System.out.println("16. exit");
+                    System.out.println("\n");
                     System.out.print("Choose an option: ");
 
                     int number = Scan.nextInt();
@@ -548,6 +549,7 @@ public class MainFonction {
                     System.out.println("11. calculate bill ");
                     System.out.println("12. display bills");
                     System.out.println("13. exit");
+                    System.out.println("\n");
                     System.out.print("Choose an option: ");
 
                     int number = Scan.nextInt();
