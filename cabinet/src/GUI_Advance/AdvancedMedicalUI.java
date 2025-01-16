@@ -110,7 +110,7 @@ public class AdvancedMedicalUI extends JFrame {
 
     private JPanel createLeftPanel() { // Design the left panel (black one)
         JPanel leftPanel = new JPanel();
-        leftPanel.setBackground(new Color(33, 37, 41)); // Black color
+        leftPanel.setBackground(new Color(19,20,50)); // Black color
         leftPanel.setPreferredSize(new Dimension(300, 700)); //
         leftPanel.setLayout(null);
 
