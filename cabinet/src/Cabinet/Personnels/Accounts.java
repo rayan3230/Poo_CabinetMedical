@@ -11,12 +11,11 @@ public class Accounts {
         Doctors = new ArrayList<>();
         Secretaries = new ArrayList<>();
         Doctor doc = new Doctor("rayan", "Cardio", "rayan@email.com", "123456789", "momo");
-        Secretary sec = new Secretary("rayan","m");
+        Secretary sec = new Secretary("rayan", "m");
         AddSecAccount(sec);
         AddDocAccount(doc);
     }
-    
-   
+
     public boolean SearchDocAccount(String name, String password) {
         for (Doctor doctor : Doctors) {
             if (doctor.FullName.equals(name) && doctor.PassWord.equals(password)) {
@@ -28,7 +27,7 @@ public class Accounts {
 
     public void AddDocAccount(Doctor doctor) {
         Doctors.add(doctor);
-        System.out.print("the doc named "+ doctor.FullName + "is added");
+        System.out.print("the doc named " + doctor.FullName + " is added");
     }
 
     public boolean SearchSecAccount(String name, String password) {
@@ -42,9 +41,8 @@ public class Accounts {
 
     public void AddSecAccount(Secretary secretary) {
         Secretaries.add(secretary);
-        System.out.print("the doc named "+ secretary.FullName + "is added");
+        System.out.print("the doc named " + secretary.FullName + " is added");
     }
-
 
     public Doctor getDoctorByCredentials(String name, String password) {
         for (Doctor doctor : Doctors) {

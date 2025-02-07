@@ -7,6 +7,8 @@ import Cabinet.Management.Prescription;
 import Cabinet.Management.VisitDates;
 import Cabinet.Personnels.Client;
 import Cabinet.Personnels.Doctor;
+import Cabinet.Personnels.Secretary;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +16,7 @@ public class MedicalOffice {
     public List<Client> Clients;
     public List<VisitDates> Appointments;
     public List<Doctor> doctors;
+
     public String[] Services = { "cardiologist", "physical therapist", "dentist", "veterinarian", "radilogic",
             "audiologist" };
     public int NumServices = 6;
@@ -29,6 +32,9 @@ public class MedicalOffice {
         doctors = new ArrayList<>();
         medicines = new ArrayList<>();
         bills = new ArrayList<>();
+
+        Doctor doc = new Doctor("rayan", "Cardio", "rayan@email.com", "123456789", "momo");
+        addDoctor(doc);
     }
 
     public void addClient(Client client) {
@@ -143,6 +149,7 @@ public class MedicalOffice {
         }
 
     }
+
     public void addPatientSheet(PatientSheet sheet) {
         PatientSheets.add(sheet);
     }

@@ -198,6 +198,7 @@ public class MainFonction {
             if (loggedIn) {
 
                 while (true) {
+                    System.out.println("\n");
                     System.out.println("\nMenu:");
                     System.out.println("1. Add Patient");
                     System.out.println("2. Add Doctor");
@@ -259,6 +260,8 @@ public class MainFonction {
 
                             office.addDoctor(doctor);
                             System.out.println("Doctor added.");
+                            System.out.println("\n");
+                            Account.AddDocAccount(doctor);
 
                             break;
 
