@@ -36,8 +36,10 @@ public class AdvancedMedicalUI extends JFrame {
         setBounds(100, 100, 1100, 700);
         setLocationRelativeTo(null);
         setLayout(null);
+        setResizable(false);
 
-        // ---------------------------------------------Initialize all panels first in the Gui
+        // ---------------------------------------------Initialize all panels first in
+        // the Gui
         mainPanel = createMainPanel();
         loginPanel = createLoginPanel();
         registrationPanel = createRegistrationPanel();
@@ -51,15 +53,15 @@ public class AdvancedMedicalUI extends JFrame {
 
         // Initialize the slide timer
         slideTimer = new Timer(10, e -> slideLeftPanel());// fir sliding the left panel (black one ta3 MC)
-        
-        // Create tabbed pane w hidden it 
+
+        // Create tabbed pane w hidden it
         tabbedPane = new JTabbedPane();
         tabbedPane.setBounds(0, 0, 1100, 700);
         tabbedPane.addTab("Login", loginPanel);
         tabbedPane.addTab("Register", registrationPanel);
         add(tabbedPane);
         tabbedPane.setVisible(false);
-        
+
         // Hide the tab header (nkhbo TAb header w nbdloh b des buttons )
         tabbedPane.setUI(new javax.swing.plaf.basic.BasicTabbedPaneUI() {
             @Override
@@ -67,7 +69,7 @@ public class AdvancedMedicalUI extends JFrame {
                 return 0;
             }
         });
-        
+
         // Create and hide the left panel { Black one}
         leftPanel = createLeftPanel();
         leftPanel.setBounds(leftPanelX, 0, 300, 700);
@@ -78,12 +80,12 @@ public class AdvancedMedicalUI extends JFrame {
         doctorPanel.setVisible(false);
         secretaryPanel.setVisible(false);
 
-        
-        JButton btnGetStarted = createStyledButton("Get Started", 300, 420, 100, 40);  // Create Button in the first panel (welcoming panel) 
+        JButton btnGetStarted = createStyledButton("Get Started", 300, 420, 100, 40); // Create Button in the first
+                                                                                      // panel (welcoming panel)
         btnGetStarted.addActionListener(e -> {
             mainPanel.setVisible(false);// tkhbi main panel
-            tabbedPane.setVisible(true); // tbdelha b tabbed pane   
-            tabbedPane.setSelectedIndex(0); //tactivi login panel li jaya f tabbed pane
+            tabbedPane.setVisible(true); // tbdelha b tabbed pane
+            tabbedPane.setSelectedIndex(0); // tactivi login panel li jaya f tabbed pane
         });
         mainPanel.add(btnGetStarted);
     }
@@ -110,36 +112,36 @@ public class AdvancedMedicalUI extends JFrame {
 
     private JPanel createLeftPanel() { // Design the left panel (black one)
         JPanel leftPanel = new JPanel();
-        leftPanel.setBackground(new Color(19,20,50)); // Black color
+        leftPanel.setBackground(new Color(19, 20, 50)); // Black color
         leftPanel.setPreferredSize(new Dimension(300, 700)); //
         leftPanel.setLayout(null);
 
-       
         JLabel lblLogin = new JLabel("MC"); // Logo
-        lblLogin.setForeground(Color.WHITE);   
+        lblLogin.setForeground(Color.WHITE);
         lblLogin.setFont(new Font("Segoe UI", Font.BOLD, 42));
         lblLogin.setBounds(40, 40, 220, 60);
         leftPanel.add(lblLogin);
 
-        JLabel lblLoginSub = new JLabel("Medical Cabinet"); // Subtitle 
+        JLabel lblLoginSub = new JLabel("Medical Cabinet"); // Subtitle
         lblLoginSub.setForeground(new Color(158, 161, 178));
         lblLoginSub.setFont(new Font("Segoe UI", Font.PLAIN, 16));
         lblLoginSub.setBounds(40, 100, 220, 25);
         leftPanel.add(lblLoginSub);
 
-       
-        // if (currentDoctor != null) { // Different navigation buttons based on user type
-        //     addNavButton(leftPanel, "Dashboard", e -> showPanel(doctorPanel), 200);
-        //     addNavButton(leftPanel, "View Patients", e -> displayPatients(), 260);
-        //     addNavButton(leftPanel, "View Schedule", e -> displaySchedule(), 320);
-        //     addNavButton(leftPanel, "Logout", e -> handleLogout(), 380);
+        // if (currentDoctor != null) { // Different navigation buttons based on user
+        // type
+        // addNavButton(leftPanel, "Dashboard", e -> showPanel(doctorPanel), 200);
+        // addNavButton(leftPanel, "View Patients", e -> displayPatients(), 260);
+        // addNavButton(leftPanel, "View Schedule", e -> displaySchedule(), 320);
+        // addNavButton(leftPanel, "Logout", e -> handleLogout(), 380);
         // } else if (currentSecretary != null) {
-        //     addNavButton(leftPanel, "Dashboard", e -> showPanel(secretaryPanel), 200);
-        //     addNavButton(leftPanel, "Add Patient", e -> addPatient(), 260);
-        //     addNavButton(leftPanel, "Add Appointment", e -> addAppointment(), 320);
-        //     addNavButton(leftPanel, "View Patients", e -> displayPatients(), 380);
-        //     addNavButton(leftPanel, "View Appointments", e -> displayAppointments(), 440);
-        //     addNavButton(leftPanel, "Logout", e -> handleLogout(), 500);
+        // addNavButton(leftPanel, "Dashboard", e -> showPanel(secretaryPanel), 200);
+        // addNavButton(leftPanel, "Add Patient", e -> addPatient(), 260);
+        // addNavButton(leftPanel, "Add Appointment", e -> addAppointment(), 320);
+        // addNavButton(leftPanel, "View Patients", e -> displayPatients(), 380);
+        // addNavButton(leftPanel, "View Appointments", e -> displayAppointments(),
+        // 440);
+        // addNavButton(leftPanel, "Logout", e -> handleLogout(), 500);
         // }
 
         return leftPanel;
@@ -160,16 +162,17 @@ public class AdvancedMedicalUI extends JFrame {
         button.setFocusPainted(false);
         button.setBorderPainted(false);
         button.setCursor(new Cursor(Cursor.HAND_CURSOR));// tbld el cursor
-        
+
         button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 button.setBackground(new Color(73, 80, 87));
             }
+
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 button.setBackground(new Color(52, 58, 64));
             }
         });
-        
+
         return button;
     }
 
@@ -180,49 +183,45 @@ public class AdvancedMedicalUI extends JFrame {
         } else {
             panel.setBounds(0, 0, 1100, 700); // Full width for other panels
         }
-        
+
         // Hide all panels first
         mainPanel.setVisible(false);
         loginPanel.setVisible(false);
         registrationPanel.setVisible(false);
         doctorPanel.setVisible(false);
         secretaryPanel.setVisible(false);
-        
+
         // display the selected panel
         panel.setVisible(true);
-        
+
         // Nchofo ida rahi deja visible wla la
         if (!Arrays.asList(getContentPane().getComponents()).contains(panel)) {
             add(panel);
         }
-        
+
         // Bring panel to front
         panel.revalidate();
         panel.repaint();
     }
-    //----------------------------------Create the Welcome panel------------------------------------------//
+
+    // ----------------------------------Create the Welcome
+    // panel------------------------------------------//
     private JPanel createMainPanel() {
         JPanel panel = new JPanel();
         panel.setBackground(new Color(240, 242, 245));
         panel.setLayout(null);
 
-       
         JPanel bgPanel = new JPanel();
         bgPanel.setBackground(new Color(33, 37, 41));
         bgPanel.setBounds(0, 0, 1100, 300);
         panel.add(bgPanel);
 
-      
         JPanel First_Panel_Welcome = new JPanel();
         First_Panel_Welcome.setBackground(Color.WHITE);
         First_Panel_Welcome.setBounds(200, 150, 700, 450);
         First_Panel_Welcome.setLayout(null);
         panel.add(First_Panel_Welcome);
 
-   
-
-       
-        
         JLabel lblWelcome = new JLabel("Welcome to Our Medical Office");
         lblWelcome.setFont(new Font("Segoe UI", Font.BOLD, 32));
         lblWelcome.setForeground(new Color(33, 37, 41));
@@ -231,14 +230,14 @@ public class AdvancedMedicalUI extends JFrame {
         First_Panel_Welcome.add(lblWelcome);
 
         // Description with icons
-        JLabel lblDesc = new JLabel("<html><center>✓ Manage Appointments<br>✓ Track Patient Records<br>✓ Efficient Workflow</center></html>");
+        JLabel lblDesc = new JLabel(
+                "<html><center>✓ Manage Appointments<br>✓ Track Patient Records<br>✓ Efficient Workflow</center></html>");
         lblDesc.setFont(new Font("Segoe UI", Font.PLAIN, 18));
         lblDesc.setForeground(new Color(108, 117, 125));
         lblDesc.setHorizontalAlignment(SwingConstants.CENTER);
         lblDesc.setBounds(100, 250, 500, 100);
         First_Panel_Welcome.add(lblDesc);
 
-        
         JLabel lblFooter = new JLabel("© 2025 Medical Cabinet Management System");
         lblFooter.setFont(new Font("Segoe UI", Font.PLAIN, 12));
         lblFooter.setForeground(new Color(108, 117, 125));
@@ -246,45 +245,40 @@ public class AdvancedMedicalUI extends JFrame {
         lblFooter.setBounds(150, 390, 400, 20);
         First_Panel_Welcome.add(lblFooter);
 
-     
-
         return panel;
     }
-//****************************************create LOgin Panel********************************************* */
+
+    // ****************************************create LOgin
+    // Panel********************************************* */
     private JPanel createLoginPanel() {
-        JPanel panel = new JPanel();//main panel
+        JPanel panel = new JPanel();// main panel
         panel.setBackground(new Color(240, 242, 245));
         panel.setLayout(null);
 
-       
-        JPanel bgPanel = new JPanel();//brk pour la color ta3 background
+        JPanel bgPanel = new JPanel();// brk pour la color ta3 background
         bgPanel.setBackground(new Color(33, 37, 41));
         bgPanel.setBounds(0, 0, 1100, 200);
         panel.add(bgPanel);
 
-       
-        JPanel LoginInfo = new JPanel();//panel ta3 les button w labels etc...
+        JPanel LoginInfo = new JPanel();// panel ta3 les button w labels etc...
         LoginInfo.setBackground(Color.WHITE);
         LoginInfo.setBounds(200, 100, 700, 500);
         LoginInfo.setLayout(null);
         panel.add(LoginInfo);
 
-        
-        JPanel Panel2 = new JPanel();// Logo at the top 
+        JPanel Panel2 = new JPanel();// Logo at the top
         Panel2.setBackground(new Color(21, 101, 192));
         Panel2.setBounds(0, 0, 700, 100);
         Panel2.setLayout(null);
         LoginInfo.add(Panel2);
 
-
         JLabel lblLogin = new JLabel("Login to Your Account");
         lblLogin.setForeground(Color.WHITE);
         lblLogin.setFont(new Font("Segoe UI", Font.BOLD, 28));
         lblLogin.setHorizontalAlignment(SwingConstants.CENTER);
-        lblLogin.setBounds(50, 130,600, 40);
+        lblLogin.setBounds(50, 130, 600, 40);
         Panel2.add(lblLogin);
 
-        
         JLabel lblAccountType = new JLabel("Select Account Type");
         lblAccountType.setFont(new Font("Segoe UI", Font.BOLD, 16));
         lblAccountType.setBounds(50, 120, 600, 30);
@@ -302,7 +296,7 @@ public class AdvancedMedicalUI extends JFrame {
         rdbSec.setBackground(Color.WHITE);
         LoginInfo.add(rdbSec);
 
-        ButtonGroup group = new ButtonGroup();//bch t9der tkhyer wahda brk
+        ButtonGroup group = new ButtonGroup();// bch t9der tkhyer wahda brk
         group.add(rdbDoc);
         group.add(rdbSec);
 
@@ -316,11 +310,11 @@ public class AdvancedMedicalUI extends JFrame {
 
         // Login Button with modern styling
         JButton btnLogin = createStyledButton("Login", 50, 380, 600, 45);
-        btnLogin.addActionListener(e -> handleLogin(rdbDoc, rdbSec, txtPassword));// bch ydir login b la function handleLogin 
+        btnLogin.addActionListener(e -> handleLogin(rdbDoc, rdbSec, txtPassword));// bch ydir login b la function
+                                                                                  // handleLogin
         LoginInfo.add(btnLogin);
 
-        
-        JLabel lblNoAccount = new JLabel("Don't have an account?");//Label pour creer un compte
+        JLabel lblNoAccount = new JLabel("Don't have an account?");// Label pour creer un compte
         lblNoAccount.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         lblNoAccount.setForeground(new Color(108, 117, 125));
         lblNoAccount.setBounds(50, 440, 200, 30);
@@ -333,11 +327,9 @@ public class AdvancedMedicalUI extends JFrame {
         btnToRegister.setContentAreaFilled(false);
         btnToRegister.setBorderPainted(false);
         btnToRegister.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        btnToRegister.addActionListener(e -> tabbedPane.setSelectedIndex(1)); //tbdl l panel f tappedpanel
+        btnToRegister.addActionListener(e -> tabbedPane.setSelectedIndex(1)); // tbdl l panel f tappedpanel
         LoginInfo.add(btnToRegister);
 
-     
-    
         return panel;
     }
 
@@ -346,9 +338,8 @@ public class AdvancedMedicalUI extends JFrame {
         panel.setBackground(new Color(240, 242, 245));
         panel.setLayout(null);
 
-        
         JPanel bgPanel = new JPanel();
-        bgPanel.setBackground(new Color(33, 37, 41)); 
+        bgPanel.setBackground(new Color(33, 37, 41));
         bgPanel.setBounds(0, 0, 1100, 200);
         panel.add(bgPanel);
 
@@ -356,9 +347,8 @@ public class AdvancedMedicalUI extends JFrame {
         JPanel CreateAccountPanel = new JPanel();
         CreateAccountPanel.setBackground(Color.WHITE);
         CreateAccountPanel.setLayout(null);
-        CreateAccountPanel.setPreferredSize(new Dimension(600,650)); // size ta3 scroll pane yji kbir
+        CreateAccountPanel.setPreferredSize(new Dimension(600, 650)); // size ta3 scroll pane yji kbir
 
-        
         JPanel Panel2 = new JPanel();
         Panel2.setBackground(new Color(33, 37, 41));
         Panel2.setBounds(0, 0, 700, 100);
@@ -372,7 +362,6 @@ public class AdvancedMedicalUI extends JFrame {
         lblLogin.setBounds(0, 30, 700, 40);
         Panel2.add(lblLogin);
 
-        
         JLabel lblAccountType = new JLabel("Select Account Type");
         lblAccountType.setFont(new Font("Segoe UI", Font.BOLD, 16));
         lblAccountType.setBounds(50, 120, 600, 30);
@@ -400,7 +389,6 @@ public class AdvancedMedicalUI extends JFrame {
         JTextField txtEmail = new JTextField();
         JTextField txtSpc = new JTextField();
         JTextField txtPhonenum = new JTextField();
-       
 
         addFormField(CreateAccountPanel, "Full Name", txtFullname, 210);
         addFormField(CreateAccountPanel, "Password", txtPassword, 280);
@@ -414,18 +402,20 @@ public class AdvancedMedicalUI extends JFrame {
             txtSpc.setEnabled(false);
             txtPhonenum.setEnabled(false);
         });
-        //klch
+        // klch
         rdbdoctor.addActionListener(e -> {
             txtEmail.setEnabled(true);
             txtSpc.setEnabled(true);
             txtPhonenum.setEnabled(true);
         });
 
-        
         JButton btnConfirm = createStyledButton("Create Account", 50, 560, 600, 45);
         btnConfirm.addActionListener(e -> {
-            if (validateRegistration(rdbdoctor, rdbsecretery, txtFullname, txtPassword)) {// bch ydir validation ida ga3 rahom m3mrin
-                createAccount(rdbdoctor, txtFullname, txtPassword, txtEmail, txtSpc, txtPhonenum);//bch ydir el account b la fonction createAccount
+            if (validateRegistration(rdbdoctor, rdbsecretery, txtFullname, txtPassword)) {// bch ydir validation ida ga3
+                                                                                          // rahom m3mrin
+                createAccount(rdbdoctor, txtFullname, txtPassword, txtEmail, txtSpc, txtPhonenum);// bch ydir el account
+                                                                                                  // b la fonction
+                                                                                                  // createAccount
             }
         });
         CreateAccountPanel.add(btnConfirm);
@@ -456,41 +446,38 @@ public class AdvancedMedicalUI extends JFrame {
 
         // Add shadow effect to the scroll pane
         scrollPane.setBorder(BorderFactory.createCompoundBorder(
-            BorderFactory.createLineBorder(new Color(0, 0, 0, 20), 1),
-            BorderFactory.createEmptyBorder(0, 0, 0, 0)
-        ));
+                BorderFactory.createLineBorder(new Color(0, 0, 0, 20), 1),
+                BorderFactory.createEmptyBorder(0, 0, 0, 0)));
 
         return panel;
     }
 
-    private boolean validateRegistration(JRadioButton rdbDoctor, JRadioButton rdbSecretary, 
+    private boolean validateRegistration(JRadioButton rdbDoctor, JRadioButton rdbSecretary,
             JTextField txtFullname, JPasswordField txtPassword) {
-        if (txtFullname.getText().isEmpty() || new String(txtPassword.getPassword()).isEmpty() || 
-            (!rdbDoctor.isSelected() && !rdbSecretary.isSelected())) {
-            JOptionPane.showMessageDialog(this, 
-                "Please fill in all required fields and select an account type.");
+        if (txtFullname.getText().isEmpty() || new String(txtPassword.getPassword()).isEmpty() ||
+                (!rdbDoctor.isSelected() && !rdbSecretary.isSelected())) {
+            JOptionPane.showMessageDialog(this,
+                    "Please fill in all required fields and select an account type.");
             return false;
         }
         return true;
     }
 
-    private void createAccount(JRadioButton rdbDoctor, JTextField txtFullname, 
+    private void createAccount(JRadioButton rdbDoctor, JTextField txtFullname,
             JPasswordField txtPassword, JTextField txtEmail, JTextField txtSpc, JTextField txtPhonenum) {
         if (rdbDoctor.isSelected()) {
             Doctor doc = new Doctor(
-                txtFullname.getText(),
-                txtSpc.getText(),
-                txtEmail.getText(),
-                txtPhonenum.getText(),
-                new String(txtPassword.getPassword())
-            );
-            
+                    txtFullname.getText(),
+                    txtSpc.getText(),
+                    txtEmail.getText(),
+                    txtPhonenum.getText(),
+                    new String(txtPassword.getPassword()));
+
             accounts.AddDocAccount(doc);
         } else {
             Secretary sec = new Secretary(
-                txtFullname.getText(),
-                new String(txtPassword.getPassword())
-            );
+                    txtFullname.getText(),
+                    new String(txtPassword.getPassword()));
             accounts.AddSecAccount(sec);
         }
         JOptionPane.showMessageDialog(this, "Account created successfully!");
@@ -532,7 +519,9 @@ public class AdvancedMedicalUI extends JFrame {
             JOptionPane.showMessageDialog(this, "Please select an account type.");
         }
     }
-//----------------------------------------create doctor Panel---------------------------------------------//
+
+    // ----------------------------------------create doctor
+    // Panel---------------------------------------------//
     private JPanel createDoctorPanel() {
         JPanel panel = new JPanel();
         panel.setBackground(new Color(240, 242, 245));
@@ -542,7 +531,7 @@ public class AdvancedMedicalUI extends JFrame {
         JPanel contentPanel = new JPanel();
         contentPanel.setLayout(null);
         contentPanel.setBackground(new Color(240, 242, 245));
-        
+
         // Doctor Info Card
         JPanel infoCard = new JPanel();
         infoCard.setBackground(Color.WHITE);
@@ -583,33 +572,33 @@ public class AdvancedMedicalUI extends JFrame {
         int buttonSpacing = 90;
         int startY = 80;
 
-        addActionButton(actionsPanel, "Update Profile", 
-            "Update your personal information", startY, 
-            e -> updateDoctorProfile());
+        addActionButton(actionsPanel, "Update Profile",
+                "Update your personal information", startY,
+                e -> updateDoctorProfile());
 
-        addActionButton(actionsPanel, "View Schedule", 
-            "Check your appointments", startY + buttonSpacing, 
-            e -> displaySchedule());
+        addActionButton(actionsPanel, "View Schedule",
+                "Check your appointments", startY + buttonSpacing,
+                e -> displaySchedule());
 
-        addActionButton(actionsPanel, "Medical Files", 
-            "Manage patient medical records", startY + buttonSpacing * 2, 
-            e -> managePatientSheet());
+        addActionButton(actionsPanel, "Medical Files",
+                "Manage patient medical records", startY + buttonSpacing * 2,
+                e -> managePatientSheet());
 
-        addActionButton(actionsPanel, "Prescribe Medicine", 
-            "Add medicines to patient prescription", startY + buttonSpacing * 3, 
-            e -> manageMedicines());
+        addActionButton(actionsPanel, "Prescribe Medicine",
+                "Add medicines to patient prescription", startY + buttonSpacing * 3,
+                e -> manageMedicines());
 
-        addActionButton(actionsPanel, "Logout", 
-            "Return to main menu", startY + buttonSpacing * 4, 
-            e -> handleLogout());
+        addActionButton(actionsPanel, "Logout",
+                "Return to main menu", startY + buttonSpacing * 4,
+                e -> handleLogout());
 
         // Increase content panel height to accommodate all content
         contentPanel.setPreferredSize(new Dimension(800, 800));
 
         // Create scroll pane with increased height
         JScrollPane scrollPane = new JScrollPane(contentPanel,
-            JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-            JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+                JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setBounds(0, 0, 800, 700);
         scrollPane.getVerticalScrollBar().setUnitIncrement(16);
         panel.add(scrollPane);
@@ -627,21 +616,21 @@ public class AdvancedMedicalUI extends JFrame {
         JPanel headerPanel = new JPanel(new BorderLayout());
         headerPanel.setBackground(new Color(33, 37, 41));
         headerPanel.setPreferredSize(new Dimension(800, 60));
-        
+
         JLabel titleLabel = new JLabel("Patient Sheets");
         titleLabel.setFont(new Font("Segoe UI", Font.BOLD, 20));
         titleLabel.setForeground(Color.WHITE);
         titleLabel.setBorder(BorderFactory.createEmptyBorder(0, 20, 0, 0));
-        
+
         JButton newSheetButton = createStyledButton("New Sheet", 0, 0, 120, 40);
         newSheetButton.addActionListener(e -> {
             sheetsDialog.dispose();
             managePatientSheet();
         });
-        
+
         headerPanel.add(titleLabel, BorderLayout.WEST);
         headerPanel.add(newSheetButton, BorderLayout.EAST);
-        
+
         // Create main panel for sheets
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
@@ -674,9 +663,8 @@ public class AdvancedMedicalUI extends JFrame {
         card.setLayout(new BorderLayout());
         card.setBackground(Color.WHITE);
         card.setBorder(BorderFactory.createCompoundBorder(
-            BorderFactory.createLineBorder(new Color(0, 0, 0, 20), 1),
-            BorderFactory.createEmptyBorder(15, 20, 15, 20)
-        ));
+                BorderFactory.createLineBorder(new Color(0, 0, 0, 20), 1),
+                BorderFactory.createEmptyBorder(15, 20, 15, 20)));
 
         // Header with patient name
         JLabel nameLabel = new JLabel(sheet.FullName);
@@ -722,7 +710,7 @@ public class AdvancedMedicalUI extends JFrame {
         JPanel contentPanel = new JPanel();
         contentPanel.setLayout(null);
         contentPanel.setBackground(new Color(240, 242, 245));
-        
+
         // Secretary Info Card
         JPanel infoCard = new JPanel();
         infoCard.setBackground(Color.WHITE);
@@ -760,29 +748,29 @@ public class AdvancedMedicalUI extends JFrame {
         int buttonSpacing = 90; // Increased spacing between buttons
         int startY = 80;
 
-        addActionButton(actionsPanel, "Add Patient", 
-            "Register a new patient", startY, 
-            e -> addPatient());
+        addActionButton(actionsPanel, "Add Patient",
+                "Register a new patient", startY,
+                e -> addPatient());
 
-        addActionButton(actionsPanel, "Add Appointment", 
-            "Schedule a new appointment", startY + buttonSpacing, 
-            e -> addAppointment());
+        addActionButton(actionsPanel, "Add Appointment",
+                "Schedule a new appointment", startY + buttonSpacing,
+                e -> addAppointment());
 
-        addActionButton(actionsPanel, "View Appointments", 
-            "Check all scheduled appointments", startY + buttonSpacing * 2, 
-            e -> displayAppointments());
+        addActionButton(actionsPanel, "View Appointments",
+                "Check all scheduled appointments", startY + buttonSpacing * 2,
+                e -> displayAppointments());
 
-        addActionButton(actionsPanel, "Manage Medicines", 
-            "Add or update medicine inventory", startY + buttonSpacing * 3, 
-            e -> manageMedicineInventory());
+        addActionButton(actionsPanel, "Manage Medicines",
+                "Add or update medicine inventory", startY + buttonSpacing * 3,
+                e -> manageMedicineInventory());
 
-        addActionButton(actionsPanel, "Generate Bill", 
-            "Create bill for patient", startY + buttonSpacing * 4, 
-            e -> generateBill());
+        addActionButton(actionsPanel, "Generate Bill",
+                "Create bill for patient", startY + buttonSpacing * 4,
+                e -> generateBill());
 
-        addActionButton(actionsPanel, "Logout", 
-            "Return to main menu", startY + buttonSpacing * 5, 
-            e -> handleLogout());
+        addActionButton(actionsPanel, "Logout",
+                "Return to main menu", startY + buttonSpacing * 5,
+                e -> handleLogout());
 
         addPanelHoverEffect(actionsPanel);
 
@@ -817,7 +805,7 @@ public class AdvancedMedicalUI extends JFrame {
 
         for (Client client : office.Clients) {
             patientsList.append(String.format("%s (Phone: %s)\n",
-                client.FullName, client.PhoneNum));
+                    client.FullName, client.PhoneNum));
         }
 
         showScrollableDialog(patientsList.toString(), "Registered Patients");
@@ -883,36 +871,35 @@ public class AdvancedMedicalUI extends JFrame {
         card.setPreferredSize(new Dimension(550, 120));
         card.setMaximumSize(new Dimension(550, 120));
         card.setBorder(BorderFactory.createCompoundBorder(
-            BorderFactory.createLineBorder(new Color(0, 0, 0, 20), 1),
-            BorderFactory.createEmptyBorder(15, 20, 15, 20)
-        ));
+                BorderFactory.createLineBorder(new Color(0, 0, 0, 20), 1),
+                BorderFactory.createEmptyBorder(15, 20, 15, 20)));
 
         // Left side - Date and time
         JPanel datePanel = new JPanel(new GridLayout(2, 1, 0, 5));
         datePanel.setBackground(Color.WHITE);
-        
+
         String[] dateTime = appointment.Date.split(" ");
         JLabel dateLabel = new JLabel(dateTime[0]);
         dateLabel.setFont(new Font("Segoe UI", Font.BOLD, 16));
-        
+
         JLabel timeLabel = new JLabel(dateTime.length > 1 ? dateTime[1] : "");
         timeLabel.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         timeLabel.setForeground(new Color(108, 117, 125));
-        
+
         datePanel.add(dateLabel);
         datePanel.add(timeLabel);
 
         // Right side - Patient info
         JPanel infoPanel = new JPanel(new GridLayout(2, 1, 0, 5));
         infoPanel.setBackground(Color.WHITE);
-        
+
         JLabel nameLabel = new JLabel("Patient: " + appointment.patient.FullName);
         nameLabel.setFont(new Font("Segoe UI", Font.BOLD, 14));
-        
+
         JLabel phoneLabel = new JLabel("Phone: " + appointment.patient.PhoneNum);
         phoneLabel.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         phoneLabel.setForeground(new Color(108, 117, 125));
-        
+
         infoPanel.add(nameLabel);
         infoPanel.add(phoneLabel);
 
@@ -944,9 +931,9 @@ public class AdvancedMedicalUI extends JFrame {
         StringBuilder appointmentsList = new StringBuilder();
         for (VisitDates appointment : office.Appointments) {
             appointmentsList.append(String.format(
-                "Date: %s\nPatient: %s\nDoctor: %s\n-----------------\n",
-                appointment.Date, appointment.patient.FullName, 
-                appointment.doctor.FullName));
+                    "Date: %s\nPatient: %s\nDoctor: %s\n-----------------\n",
+                    appointment.Date, appointment.patient.FullName,
+                    appointment.doctor.FullName));
         }
 
         showScrollableDialog(appointmentsList.toString(), "All Appointments");
@@ -956,12 +943,12 @@ public class AdvancedMedicalUI extends JFrame {
         JTextArea textArea = new JTextArea(content);
         textArea.setEditable(false);
         textArea.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-        
+
         JScrollPane scrollPane = new JScrollPane(textArea);
         scrollPane.setPreferredSize(new Dimension(400, 300));
 
-        JOptionPane.showMessageDialog(this, scrollPane, title, 
-            JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, scrollPane, title,
+                JOptionPane.INFORMATION_MESSAGE);
     }
 
     // Helper methods
@@ -987,16 +974,17 @@ public class AdvancedMedicalUI extends JFrame {
         button.setFocusPainted(false);
         button.setBorderPainted(false);
         button.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        
+
         button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 button.setBackground(new Color(52, 58, 64));
             }
+
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 button.setBackground(new Color(33, 37, 41));
             }
         });
-        
+
         return button;
     }
 
@@ -1027,9 +1015,11 @@ public class AdvancedMedicalUI extends JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 action.actionPerformed(null);
             }
+
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 buttonCard.setBackground(new Color(233, 236, 239));
             }
+
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 buttonCard.setBackground(new Color(240, 242, 245));
             }
@@ -1054,13 +1044,15 @@ public class AdvancedMedicalUI extends JFrame {
                 this, "Select a patient:", "Patient Selection",
                 JOptionPane.QUESTION_MESSAGE, null, patientNames, patientNames[0]);
 
-        if (selectedPatient == null) return;
+        if (selectedPatient == null)
+            return;
 
         String selectedDoctor = (String) JOptionPane.showInputDialog(
                 this, "Select a doctor:", "Doctor Selection",
                 JOptionPane.QUESTION_MESSAGE, null, doctorNames, doctorNames[0]);
 
-        if (selectedDoctor == null) return;
+        if (selectedDoctor == null)
+            return;
 
         // Create date picker dialog
         JDialog dateDialog = new JDialog(this, "Select Appointment Date", true);
@@ -1120,8 +1112,8 @@ public class AdvancedMedicalUI extends JFrame {
                 VisitDates appointment = new VisitDates(appointmentDate, patient, doctor);
                 office.addAppointment(appointment);
                 JOptionPane.showMessageDialog(this, String.format(
-                    "Appointment scheduled successfully!\nPatient: %s\nDoctor: %s\nDate: %s",
-                    patient.FullName, doctor.FullName, appointmentDate));
+                        "Appointment scheduled successfully!\nPatient: %s\nDoctor: %s\nDate: %s",
+                        patient.FullName, doctor.FullName, appointmentDate));
             }
         }
     }
@@ -1151,16 +1143,13 @@ public class AdvancedMedicalUI extends JFrame {
         // Create form fields with Segoe UI font
         JTextField txtFullName = new JTextField();
         txtFullName.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-        
+
         JTextField txtPhone = new JTextField();
         txtPhone.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-        
-        
 
         // Add form fields with labels
         addFormField(formPanel, "Full Name", txtFullName, 20);
         addFormField(formPanel, "Phone Number", txtPhone, 100);
-     
 
         // Create buttons panel
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 20));
@@ -1173,24 +1162,23 @@ public class AdvancedMedicalUI extends JFrame {
         btnSave.addActionListener(e -> {
             String name = txtFullName.getText().trim();
             String phone = txtPhone.getText().trim();
-           
 
-            if (name.isEmpty() || phone.isEmpty() ) {
-                JOptionPane.showMessageDialog(dialog, 
-                    "Please fill in all fields.", 
-                    "Missing Information", 
-                    JOptionPane.WARNING_MESSAGE);
+            if (name.isEmpty() || phone.isEmpty()) {
+                JOptionPane.showMessageDialog(dialog,
+                        "Please fill in all fields.",
+                        "Missing Information",
+                        JOptionPane.WARNING_MESSAGE);
                 return;
             }
 
             Client newPatient = new Client(name, phone);
-           
+
             office.addClient(newPatient);
-            
-            JOptionPane.showMessageDialog(dialog, 
-                "Patient added successfully!", 
-                "Success", 
-                JOptionPane.INFORMATION_MESSAGE);
+
+            JOptionPane.showMessageDialog(dialog,
+                    "Patient added successfully!",
+                    "Success",
+                    JOptionPane.INFORMATION_MESSAGE);
             dialog.dispose();
         });
 
@@ -1212,7 +1200,7 @@ public class AdvancedMedicalUI extends JFrame {
         JScrollPane scrollPane = (JScrollPane) doctorPanel.getComponent(0);
         // Get the content panel from scroll pane
         JPanel contentPanel = (JPanel) scrollPane.getViewport().getView();
-        
+
         // Find the info card panel
         for (Component c : contentPanel.getComponents()) {
             if (c instanceof JPanel) {
@@ -1241,14 +1229,14 @@ public class AdvancedMedicalUI extends JFrame {
 
     private void updateSecretaryLabels() {
         Component[] components = secretaryPanel.getComponents();
-        for(Component c : components) {
-            if(c instanceof JPanel) {
-                JPanel card = (JPanel)c;
+        for (Component c : components) {
+            if (c instanceof JPanel) {
+                JPanel card = (JPanel) c;
                 Component[] cardComps = card.getComponents();
-                for(Component cc : cardComps) {
-                    if(cc instanceof JLabel) {
-                        JLabel label = (JLabel)cc;
-                        if(label.getText().startsWith("Welcome")) {
+                for (Component cc : cardComps) {
+                    if (cc instanceof JLabel) {
+                        JLabel label = (JLabel) cc;
+                        if (label.getText().startsWith("Welcome")) {
                             label.setText("Welcome, " + currentSecretary.FullName);
                         }
                     }
@@ -1295,9 +1283,9 @@ public class AdvancedMedicalUI extends JFrame {
         addFormField(CreateAccountPanel, "New Password (leave blank to keep current)", txtNewPassword, 340);
 
         // Create scroll pane with vertical scrolling only
-        JScrollPane scrollPane = new JScrollPane(CreateAccountPanel, 
-            JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, 
-            JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        JScrollPane scrollPane = new JScrollPane(CreateAccountPanel,
+                JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setBorder(null);
         scrollPane.getVerticalScrollBar().setUnitIncrement(16);
 
@@ -1315,7 +1303,7 @@ public class AdvancedMedicalUI extends JFrame {
             currentDoctor.Mail = txtEmail.getText();
             currentDoctor.Profession = txtSpecialization.getText();
             currentDoctor.PhoneNum = txtPhone.getText();
-            
+
             String newPassword = new String(txtNewPassword.getPassword());
             if (!newPassword.trim().isEmpty()) {
                 currentDoctor.PassWord = newPassword;
@@ -1355,18 +1343,18 @@ public class AdvancedMedicalUI extends JFrame {
         JPanel headerPanel = new JPanel(new BorderLayout());
         headerPanel.setBackground(new Color(33, 37, 41));
         headerPanel.setPreferredSize(new Dimension(800, 60));
-        
+
         JLabel titleLabel = new JLabel("Medical Files");
         titleLabel.setFont(new Font("Segoe UI", Font.BOLD, 20));
         titleLabel.setForeground(Color.WHITE);
         titleLabel.setBorder(BorderFactory.createEmptyBorder(0, 20, 0, 0));
-        
+
         JButton newSheetButton = createStyledButton("New Sheet", 0, 0, 120, 40);
         newSheetButton.addActionListener(e -> {
             medDialog.dispose();
             createNewSheet();
         });
-        
+
         headerPanel.add(titleLabel, BorderLayout.WEST);
         headerPanel.add(newSheetButton, BorderLayout.EAST);
 
@@ -1411,14 +1399,16 @@ public class AdvancedMedicalUI extends JFrame {
                 patientNames,
                 patientNames[0]);
 
-        if (selectedPatient == null) return;
+        if (selectedPatient == null)
+            return;
 
         Client patient = office.Clients.stream()
                 .filter(c -> c.FullName.equals(selectedPatient))
                 .findFirst()
                 .orElse(null);
 
-        if (patient == null) return;
+        if (patient == null)
+            return;
 
         // Create patient sheet dialog
         JDialog sheetDialog = new JDialog(this, "New Patient Sheet", true);
@@ -1457,7 +1447,7 @@ public class AdvancedMedicalUI extends JFrame {
         // Add form fields with labels
         addFormField(formPanel, "Weight (kg)", txtWeight, 20);
         addFormField(formPanel, "Height (cm)", txtHeight, 100);
-        
+
         // Add text areas with labels
         JLabel lblMedical = new JLabel("Medical Observations");
         lblMedical.setFont(new Font("Segoe UI", Font.BOLD, 14));
@@ -1489,25 +1479,24 @@ public class AdvancedMedicalUI extends JFrame {
             try {
                 int weight = Integer.parseInt(txtWeight.getText());
                 int height = Integer.parseInt(txtHeight.getText());
-                
+
                 PatientSheet sheet = new PatientSheet(
-                    patient.FullName,
-                    patient.PhoneNum,
-                    txtMedicalObs.getText(),
-                    txtSurgicalObs.getText(),
-                    weight,
-                    height
-                );
-                
+                        patient.FullName,
+                        patient.PhoneNum,
+                        txtMedicalObs.getText(),
+                        txtSurgicalObs.getText(),
+                        weight,
+                        height);
+
                 office.addPatientSheet(sheet);
                 JOptionPane.showMessageDialog(sheetDialog, "Patient sheet saved successfully!");
                 sheetDialog.dispose();
                 managePatientSheet(); // Refresh the medical files view
             } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(sheetDialog, 
-                    "Please enter valid numbers for weight and height.",
-                    "Invalid Input",
-                    JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(sheetDialog,
+                        "Please enter valid numbers for weight and height.",
+                        "Invalid Input",
+                        JOptionPane.ERROR_MESSAGE);
             }
         });
 
@@ -1543,7 +1532,8 @@ public class AdvancedMedicalUI extends JFrame {
                 patientNames,
                 patientNames[0]);
 
-        if (selectedPatient == null) return;
+        if (selectedPatient == null)
+            return;
 
         JDialog dialog = new JDialog(this, "Prescribe Medicines", true);
         dialog.setLayout(new BorderLayout());
@@ -1569,11 +1559,10 @@ public class AdvancedMedicalUI extends JFrame {
         btnAdd.addActionListener(e -> {
             try {
                 Medicines med = new Medicines(
-                    txtMedName.getText(),
-                    Integer.parseInt(txtQuantity.getText()),
-                    100, // Default price
-                    Integer.parseInt(txtTimesPerDay.getText())
-                );
+                        txtMedName.getText(),
+                        Integer.parseInt(txtQuantity.getText()),
+                        100, // Default price
+                        Integer.parseInt(txtTimesPerDay.getText()));
                 office.addMadicines(med);
                 JOptionPane.showMessageDialog(dialog, "Medicine prescribed successfully!");
                 dialog.dispose();
@@ -1615,27 +1604,26 @@ public class AdvancedMedicalUI extends JFrame {
             addDialog.setLayout(new GridLayout(0, 2));
             addDialog.setSize(300, 200);
             addDialog.setLocationRelativeTo(this);
-            
+
             JTextField txtName = new JTextField();
             JTextField txtQuantity = new JTextField();
             JTextField txtPrice = new JTextField();
-            
+
             addDialog.add(new JLabel("Name:"));
             addDialog.add(txtName);
             addDialog.add(new JLabel("Quantity:"));
             addDialog.add(txtQuantity);
             addDialog.add(new JLabel("Price:"));
             addDialog.add(txtPrice);
-            
+
             JButton btnSave = createStyledButton("Save", 0, 0, 100, 30);
             btnSave.addActionListener(ev -> {
                 try {
                     Medicines newMed = new Medicines(
-                        txtName.getText(),
-                        Integer.parseInt(txtQuantity.getText()),
-                        Integer.parseInt(txtPrice.getText()),
-                        1
-                    );
+                            txtName.getText(),
+                            Integer.parseInt(txtQuantity.getText()),
+                            Integer.parseInt(txtPrice.getText()),
+                            1);
                     office.addMadicines(newMed);
                     addDialog.dispose();
                     dialog.dispose();
@@ -1644,7 +1632,7 @@ public class AdvancedMedicalUI extends JFrame {
                     JOptionPane.showMessageDialog(addDialog, "Please enter valid numbers.");
                 }
             });
-            
+
             addDialog.add(btnSave);
             addDialog.setVisible(true);
         });
@@ -1686,10 +1674,10 @@ public class AdvancedMedicalUI extends JFrame {
                 int amount = Integer.parseInt(txtAmount.getText());
                 int appointmentIndex = appointmentBox.getSelectedIndex();
                 VisitDates appointment = office.Appointments.get(appointmentIndex);
-                
-                Bill bill = new Bill(appointment.patient.FullName, amount, appointmentIndex, new int[]{});
+
+                Bill bill = new Bill(appointment.patient.FullName, amount, appointmentIndex, new int[] {});
                 office.addBill(bill);
-                
+
                 JOptionPane.showMessageDialog(dialog, "Bill generated successfully!");
                 dialog.dispose();
             } catch (NumberFormatException ex) {
@@ -1738,4 +1726,4 @@ public class AdvancedMedicalUI extends JFrame {
             }
         });
     }
-} 
+}
