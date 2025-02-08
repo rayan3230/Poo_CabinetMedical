@@ -30,9 +30,13 @@ public class MedicalOffice {
         doctors = new ArrayList<>();
         medicines = new ArrayList<>();
         bills = new ArrayList<>();
+        Prescription = new ArrayList<>();
 
-        Doctor doc = new Doctor("rayan", "Cardio", "rayan@email.com", "123456789", "momo");
-        addDoctor(doc);
+        Doctor doc1 = new Doctor("rayan", "Cardio", "rayan@email.com", "123456789", "momo");
+        Doctor doc2 = new Doctor("fahd", "Dentist", "mohamed@email.com", "987654321", "momo");
+        addDoctor(doc2);
+        addDoctor(doc1);
+
         Client client1 = new Client("Mouzali Rayane", "055030545");
         Client client2 = new Client("Fahd Djedi", "0465847854");
         Client client3 = new Client("Stambouli Eliesse", "04656378");
@@ -45,6 +49,50 @@ public class MedicalOffice {
         addClient(client4);
         addClient(client5);
 
+        VisitDates app1 = new VisitDates("2021-05-12", "10:00", "11:00", client1, doc2, 1);
+        VisitDates app2 = new VisitDates("2021-05-12", "11:00", "12:00", client2, doc1, 1);
+        VisitDates app3 = new VisitDates("2021-05-12", "12:00", "13:00", client3, doc2, 1);
+        VisitDates app4 = new VisitDates("2021-05-12", "13:00", "14:00", client4, doc1, 1);
+
+        addAppointment(app1);
+        addAppointment(app2);
+        addAppointment(app3);
+        addAppointment(app4);
+
+        Medicines med1 = new Medicines("Doliprane", 10, 50, 3);
+        Medicines med2 = new Medicines("Aspirine", 20, 30, 2);
+        Medicines med3 = new Medicines("Paracetamol", 15, 40, 2);
+        Medicines med4 = new Medicines("Ibuprofen", 25, 60, 3);
+
+        addMadicines(med1);
+        addMadicines(med2);
+        addMadicines(med3);
+        addMadicines(med4);
+
+        Bill bill1 = new Bill("Mouzali Rayane", 1, new int[] { 1, 2 });
+        Bill bill2 = new Bill("Fahd Djedi", 2, new int[] { 3, 4 });
+        Bill bill3 = new Bill("Stambouli Eliesse", 3, new int[] { 1, 3 });
+        Bill bill4 = new Bill("Benazza Mehdi", 4, new int[] { 2, 4 });
+
+        bill1.calculateBill(app1.CalculatePrice(doc2, app1.duration), 80);
+        bill2.calculateBill(app2.CalculatePrice(doc1, app2.duration), 100);
+        bill3.calculateBill(app3.CalculatePrice(doc2, app3.duration), 120);
+        bill4.calculateBill(app4.CalculatePrice(doc1, app4.duration), 140);
+
+        addBill(bill1);
+        addBill(bill2);
+        addBill(bill3);
+        addBill(bill4);
+
+        Prescription pre1 = new Prescription("rayan", "Mouzali_Rayane", "Doliprane_Aspirine_Paracetamol");
+        Prescription pre2 = new Prescription("fahd", "Fahd_Djedi", "Paracetamol_Ibuprofen");
+        Prescription pre3 = new Prescription("rayan", "Stambouli_Eliesse", "Doliprane_Paracetamol");
+        Prescription pre4 = new Prescription("fahd", "Benazza_Mehdi", "Aspirine_Ibuprofen");
+
+        addPreScript(pre1);
+        addPreScript(pre2);
+        addPreScript(pre3);
+        addPreScript(pre4);
 
     }
 
@@ -136,7 +184,7 @@ public class MedicalOffice {
 
     public void DisplayPrescription(String PatientName) {
         if (Prescription.isEmpty()) {
-            System.out.println("there qre no prescription in the system");
+            System.out.println("there are no prescription in the system");
         } else {
             for (int i = 0; i < Prescription.size(); i++) {
                 if (Prescription.get(i).PatientName.equals(PatientName)) {

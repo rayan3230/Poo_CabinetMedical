@@ -11,9 +11,11 @@ public class Accounts {
         Doctors = new ArrayList<>();
         Secretaries = new ArrayList<>();
         Doctor doc = new Doctor("rayan", "Cardio", "rayan@email.com", "123456789", "momo");
+        Doctor doc2 = new Doctor("fahd", "Dentist", "mohamed@email.com", "987654321", "momo");
         Secretary sec = new Secretary("rayan", "m");
         AddSecAccount(sec);
         AddDocAccount(doc);
+        AddDocAccount(doc2);
     }
 
     public boolean SearchDocAccount(String name, String password) {

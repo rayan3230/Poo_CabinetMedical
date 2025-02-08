@@ -14,6 +14,12 @@ public class Bill {
         this.MedId = MedId;
     }
 
+    public Bill(String PatientName, int AppId, int[] MedId) {
+        this.PatientName = PatientName;
+        this.AppId = AppId;
+        this.MedId = MedId;
+    }
+
     public Bill() {
 
     }
