@@ -38,11 +38,11 @@ public class MedicalOffice {
         addDoctor(doc2);
         addDoctor(doc1);
 
-        Client client1 = new Client("Mouzali Rayane", "055030545");
-        Client client2 = new Client("Fahd Djedi", "0465847854");
-        Client client3 = new Client("Stambouli Eliesse", "04656378");
-        Client client4 = new Client("Benazza Mehdi", "0588353455");
-        Client client5 = new Client("Wassim Mouhouche", "0567890456");
+        Client client1 = new Client("Mouzali_Rayane", "055030545");
+        Client client2 = new Client("Fahd_Djedi", "0465847854");
+        Client client3 = new Client("Stambouli_Eliesse", "04656378");
+        Client client4 = new Client("Benazza_Mehdi", "0588353455");
+        Client client5 = new Client("Wassim_Mouhouche", "0567890456");
 
         addClient(client1);
         addClient(client2);
@@ -72,10 +72,10 @@ public class MedicalOffice {
         addMadicines(med3);
         addMadicines(med4);
 
-        Bill bill1 = new Bill("Mouzali Rayane", 1, new int[] { 1, 2 });
-        Bill bill2 = new Bill("Fahd Djedi", 2, new int[] { 3, 4 });
-        Bill bill3 = new Bill("Stambouli Eliesse", 3, new int[] { 1, 3 });
-        Bill bill4 = new Bill("Benazza Mehdi", 4, new int[] { 2, 4 });
+        Bill bill1 = new Bill("Mouzali_Rayane", 1, new int[] { 1, 2 });
+        Bill bill2 = new Bill("Fahd_Djedi", 2, new int[] { 3, 4 });
+        Bill bill3 = new Bill("Stambouli_Eliesse", 3, new int[] { 1, 3 });
+        Bill bill4 = new Bill("Benazza_Mehdi", 4, new int[] { 2, 4 });
 
         bill1.calculateBill(app1.CalculatePrice(doc2, app1.duration), 80);
         bill2.calculateBill(app2.CalculatePrice(doc1, app2.duration), 100);
