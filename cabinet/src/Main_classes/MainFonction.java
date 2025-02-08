@@ -449,7 +449,7 @@ public class MainFonction {
                             boolean exit = false;
                             do {
                                 System.out.println(
-                                        "do you want to     1-print     or     2-write the print     a prescription");
+                                        "do you want to     1-print     or     2-write the print a prescription   3-exit");
                                 int x = Scan.nextInt();
 
                                 if (x == 1) {
@@ -478,8 +478,10 @@ public class MainFonction {
 
                                     office.Prescription.add(PresCript);
 
+                                } else if (x == 3) {
+                                    exit = true;
                                 } else {
-                                    System.out.println("only enter the values 1 or 2 please ");
+                                    System.out.println("only enter the values 1, 2 or 3 please ");
                                 }
 
                             } while (!exit);
