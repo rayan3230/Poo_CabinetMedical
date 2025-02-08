@@ -34,6 +34,7 @@ public class MedicalOffice {
 
         Doctor doc1 = new Doctor("rayan", "Cardio", "rayan@email.com", "123456789", "momo");
         Doctor doc2 = new Doctor("fahd", "Dentist", "mohamed@email.com", "987654321", "momo");
+
         addDoctor(doc2);
         addDoctor(doc1);
 
@@ -53,11 +54,13 @@ public class MedicalOffice {
         VisitDates app2 = new VisitDates("2021-05-12", "11:00", "12:00", client2, doc1, 1);
         VisitDates app3 = new VisitDates("2021-05-12", "12:00", "13:00", client3, doc2, 1);
         VisitDates app4 = new VisitDates("2021-05-12", "13:00", "14:00", client4, doc1, 1);
+        VisitDates app5 = new VisitDates("2021-05-12", "14:00", "15:00", client5, doc1, 1);
 
         addAppointment(app1);
         addAppointment(app2);
         addAppointment(app3);
         addAppointment(app4);
+        addAppointment(app5);
 
         Medicines med1 = new Medicines("Doliprane", 10, 50, 3);
         Medicines med2 = new Medicines("Aspirine", 20, 30, 2);
