@@ -559,7 +559,7 @@ public class AdvancedMedicalUI extends JFrame {
         // Actions Panel - Increase height to fit all buttons
         JPanel actionsPanel = new JPanel();
         actionsPanel.setBackground(Color.WHITE);
-        actionsPanel.setBounds(60, 200, 680, 500); // Increased height to 500
+        actionsPanel.setBounds(60, 200, 680, 800); // Increased height to 500
         actionsPanel.setLayout(null);
         contentPanel.add(actionsPanel);
 
@@ -775,7 +775,7 @@ public class AdvancedMedicalUI extends JFrame {
         addPanelHoverEffect(actionsPanel);
 
         // Set content panel size for scrolling
-        contentPanel.setPreferredSize(new Dimension(800, 900)); // Increased height
+        contentPanel.setPreferredSize(new Dimension(800, 1100)); // Increased height
 
         // Create scroll pane
         JScrollPane scrollPane = new JScrollPane(contentPanel);
