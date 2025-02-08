@@ -77,10 +77,10 @@ public class MedicalOffice {
         Bill bill3 = new Bill("Stambouli_Eliesse", 3, new int[] { 1, 3 });
         Bill bill4 = new Bill("Benazza_Mehdi", 4, new int[] { 2, 4 });
 
-        bill1.calculateBill(app1.CalculatePrice(doc2, app1.duration), 80);
-        bill2.calculateBill(app2.CalculatePrice(doc1, app2.duration), 100);
-        bill3.calculateBill(app3.CalculatePrice(doc2, app3.duration), 120);
-        bill4.calculateBill(app4.CalculatePrice(doc1, app4.duration), 140);
+        bill1.Price = bill1.calculateBill(app1.CalculatePrice(doc2, app1.duration), 80);
+        bill2.Price = bill2.calculateBill(app2.CalculatePrice(doc1, app2.duration), 100);
+        bill3.Price = bill3.calculateBill(app3.CalculatePrice(doc2, app3.duration), 120);
+        bill4.Price = bill4.calculateBill(app4.CalculatePrice(doc1, app4.duration), 140);
 
         addBill(bill1);
         addBill(bill2);

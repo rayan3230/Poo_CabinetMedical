@@ -26,8 +26,8 @@ public class Bill {
 
     public int calculateBill(int appPrice, int MedPrice) {
 
-        this.Price = appPrice * MedPrice;
-        return (appPrice * MedPrice);
+        this.Price = appPrice + MedPrice;
+        return (appPrice + MedPrice);
     }
 
 }
