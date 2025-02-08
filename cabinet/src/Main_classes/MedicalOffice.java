@@ -7,8 +7,6 @@ import Cabinet.Management.Prescription;
 import Cabinet.Management.VisitDates;
 import Cabinet.Personnels.Client;
 import Cabinet.Personnels.Doctor;
-import Cabinet.Personnels.Secretary;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,6 +33,19 @@ public class MedicalOffice {
 
         Doctor doc = new Doctor("rayan", "Cardio", "rayan@email.com", "123456789", "momo");
         addDoctor(doc);
+        Client client1 = new Client("Mouzali Rayane", "055030545");
+        Client client2 = new Client("Fahd Djedi", "0465847854");
+        Client client3 = new Client("Stambouli Eliesse", "04656378");
+        Client client4 = new Client("Benazza Mehdi", "0588353455");
+        Client client5 = new Client("Wassim Mouhouche", "0567890456");
+
+        addClient(client1);
+        addClient(client2);
+        addClient(client3);
+        addClient(client4);
+        addClient(client5);
+
+
     }
 
     public void addClient(Client client) {

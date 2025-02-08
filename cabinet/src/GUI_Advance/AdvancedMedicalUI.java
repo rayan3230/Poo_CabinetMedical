@@ -735,7 +735,7 @@ public class AdvancedMedicalUI extends JFrame {
         // Actions Panel with increased height
         JPanel actionsPanel = new JPanel();
         actionsPanel.setBackground(Color.WHITE);
-        actionsPanel.setBounds(60, 200, 680, 600); // Increased height
+        actionsPanel.setBounds(60, 200, 680, 900); // Increased height
         actionsPanel.setLayout(null);
         contentPanel.add(actionsPanel);
 
@@ -779,7 +779,7 @@ public class AdvancedMedicalUI extends JFrame {
 
         // Create scroll pane
         JScrollPane scrollPane = new JScrollPane(contentPanel);
-        scrollPane.setBounds(0, 0, 800, 700);
+        scrollPane.setBounds(0, 0, 800, 900);
         scrollPane.getVerticalScrollBar().setUnitIncrement(16);
         panel.add(scrollPane);
 
@@ -789,10 +789,28 @@ public class AdvancedMedicalUI extends JFrame {
     private void handleLogout() {
         currentDoctor = null;
         currentSecretary = null;
-        // Slide out animation could be added here
+        
+        // Hide all panels
+        doctorPanel.setVisible(false);
+        secretaryPanel.setVisible(false);
         leftPanel.setVisible(false);
+        
+        // Reset left panel position
+        leftPanelX = -300;
+        
+        // Show login panel
         tabbedPane.setVisible(true);
-        leftPanelX = -300; // Reset position
+        tabbedPane.setSelectedIndex(0); // Set to first tab instead of index 2
+        
+        // Clear the left panel of all buttons
+        leftPanel.removeAll();
+        leftPanel.revalidate();
+        leftPanel.repaint();
+        
+        // Reset main frame
+        revalidate();
+        repaint();
+        
         JOptionPane.showMessageDialog(this, "Logged out successfully!");
     }
 
