@@ -864,12 +864,16 @@ public class AdvancedMedicalUI extends JFrame {
 
         // Add appointment cards
         office.Appointments.stream()
-                .filter(a -> a.doctor.equals(currentDoctor))
-                .forEach(appointment -> {
-                    JPanel appointmentCard = createAppointmentCard(appointment);
-                    appointmentsPanel.add(appointmentCard);
-                    appointmentsPanel.add(Box.createRigidArea(new Dimension(0, 10))); // spacing between cards
-                });
+            .filter(a -> a.doctor.equals(currentDoctor))
+            .forEach(appointment -> {
+                JPanel appointmentCard = createAppointmentCard(appointment);
+                appointmentsPanel.add(appointmentCard);
+                appointmentsPanel.add(Box.createRigidArea(new Dimension(0, 10))); // spacing between cards
+            });
+
+        // Refresh the appointments panel to display the new cards
+        appointmentsPanel.revalidate();
+        appointmentsPanel.repaint();
 
         JScrollPane scrollPane = new JScrollPane(appointmentsPanel);
         scrollPane.setBorder(null);
