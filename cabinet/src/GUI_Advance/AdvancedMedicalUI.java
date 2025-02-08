@@ -789,28 +789,28 @@ public class AdvancedMedicalUI extends JFrame {
     private void handleLogout() {
         currentDoctor = null;
         currentSecretary = null;
-        
+
         // Hide all panels
         doctorPanel.setVisible(false);
         secretaryPanel.setVisible(false);
         leftPanel.setVisible(false);
-        
+
         // Reset left panel position
         leftPanelX = -300;
-        
+
         // Show login panel
         tabbedPane.setVisible(true);
         tabbedPane.setSelectedIndex(0); // Set to first tab instead of index 2
-        
+
         // Clear the left panel of all buttons
         leftPanel.removeAll();
         leftPanel.revalidate();
         leftPanel.repaint();
-        
+
         // Reset main frame
         revalidate();
         repaint();
-        
+
         JOptionPane.showMessageDialog(this, "Logged out successfully!");
     }
 
@@ -830,60 +830,23 @@ public class AdvancedMedicalUI extends JFrame {
     }
 
     private void displaySchedule() {
-        if (!office.Appointments.stream().anyMatch(a -> a.doctor.equals(currentDoctor))) {
+        if (office.Appointments.isEmpty()) {
             JOptionPane.showMessageDialog(this, "No appointments scheduled.");
             return;
         }
 
-        // Create a custom dialog
-        JDialog scheduleDialog = new JDialog(this, "Your Schedule", true);
-        scheduleDialog.setLayout(new BorderLayout());
-        scheduleDialog.setSize(600, 500);
-        scheduleDialog.setLocationRelativeTo(this);
+        StringBuilder appointmentsList = new StringBuilder();
+        for (VisitDates appointment : office.Appointments) {
+            if (currentDoctor.FullName.equals(appointment.doctor.FullName)) {
+                appointmentsList.append(String.format(
+                        "Date: %s\nPatient: %s\nDoctor: %s\n-----------------\n",
+                        appointment.Date, appointment.patient.FullName,
+                        appointment.doctor.FullName));
+            }
 
-        // Create main panel with dark header
-        JPanel mainPanel = new JPanel(new BorderLayout());
-        mainPanel.setBackground(new Color(240, 242, 245));
+        }
 
-        // Header panel
-        JPanel headerPanel = new JPanel();
-        headerPanel.setBackground(new Color(33, 37, 41));
-        headerPanel.setPreferredSize(new Dimension(600, 60));
-        headerPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 20, 15));
-
-        JLabel headerLabel = new JLabel("Upcoming Appointments");
-        headerLabel.setFont(new Font("Segoe UI", Font.BOLD, 20));
-        headerLabel.setForeground(Color.WHITE);
-        headerPanel.add(headerLabel);
-
-        // Create scroll pane for appointments
-        JPanel appointmentsPanel = new JPanel();
-        appointmentsPanel.setLayout(new BoxLayout(appointmentsPanel, BoxLayout.Y_AXIS));
-        appointmentsPanel.setBackground(new Color(240, 242, 245));
-        appointmentsPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-
-        // Add appointment cards
-        office.Appointments.stream()
-            .filter(a -> a.doctor.equals(currentDoctor))
-            .forEach(appointment -> {
-                JPanel appointmentCard = createAppointmentCard(appointment);
-                appointmentsPanel.add(appointmentCard);
-                appointmentsPanel.add(Box.createRigidArea(new Dimension(0, 10))); // spacing between cards
-            });
-
-        // Refresh the appointments panel to display the new cards
-        appointmentsPanel.revalidate();
-        appointmentsPanel.repaint();
-
-        JScrollPane scrollPane = new JScrollPane(appointmentsPanel);
-        scrollPane.setBorder(null);
-        scrollPane.getVerticalScrollBar().setUnitIncrement(16);
-
-        mainPanel.add(headerPanel, BorderLayout.NORTH);
-        mainPanel.add(scrollPane, BorderLayout.CENTER);
-
-        scheduleDialog.add(mainPanel);
-        scheduleDialog.setVisible(true);
+        showScrollableDialog(appointmentsList.toString(), "All Appointments");
     }
 
     private JPanel createAppointmentCard(VisitDates appointment) {
